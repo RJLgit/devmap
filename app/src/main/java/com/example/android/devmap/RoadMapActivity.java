@@ -14,7 +14,7 @@ public class RoadMapActivity extends AppCompatActivity implements StagesAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_road_map);
-        myRecyclerView = (RecyclerView) findViewById(R.id.my_recycle_view);
+        myRecyclerView = (RecyclerView) findViewById(R.id.stages_recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);

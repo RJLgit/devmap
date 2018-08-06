@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="70dp">
 
@@ -13,26 +12,26 @@
         app:layout_constraintBaseline_toBaselineOf="parent"/>
 
     <TextView
-        android:id="@+id/stageNumber"
+        android:id="@+id/goalNumber"
         android:layout_width="178dp"
         android:layout_height="32dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="Stage Number"
+        android:text="Goal Number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/stageCheckBox"
+        android:id="@+id/goalCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Stage Completed?"
-        app:layout_constraintBaseline_toBaselineOf="@+id/stageNumber"
+        android:text="Goal Completed?"
+        app:layout_constraintBaseline_toBaselineOf="@+id/goalNumber"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stageNumber" />
+        app:layout_constraintStart_toEndOf="@+id/goalNumber" />
 
 </android.support.constraint.ConstraintLayout>

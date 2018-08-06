@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">devmap</string>
+    <string name="app_name">DevMap</string>
     <string name="goals_recycler_TextView">Goal Number</string>
     <string name="goals_recycler_view_checkbox">Goal Completed?</string>
     <string name="stages_recycler_view_TextView">Stage Number</string>
     <string name="stages_recycler_view_CheckBox">Stage completed?</string>
+    <string name="main_button_android_roadmap">Android Development Road Map</string>
+    <string name="road_map_activity_label">Stages</string>
+    <string name="goals_activity_label">Goals</string>
 </resources>

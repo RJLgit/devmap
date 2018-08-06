@@ -9,15 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RoadMapActivity" />
-        <activity android:name=".GoalsActivity"></activity>
+        <activity
+            android:name=".RoadMapActivity"
+            android:label="@string/road_map_activity_label"/>
+        <activity
+            android:name=".GoalsActivity"
+            android:label="@string/goals_activity_label"></activity>
     </application>
 
 </manifest>

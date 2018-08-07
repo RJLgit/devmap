@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 public class RoadMapActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
     private StagesAdapter myAdapter;
     RecyclerView myRecyclerView;
+    private AppData appData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,11 @@ public class RoadMapActivity extends AppCompatActivity implements StagesAdapter.
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-        myAdapter = new StagesAdapter(this, this);
+        appData = new AppData();
+        appData.populateData();
+
+
+        myAdapter = new StagesAdapter(this, this, appData.getStages());
 
         myRecyclerView.setAdapter(myAdapter);
     }
@@ -27,6 +32,7 @@ public class RoadMapActivity extends AppCompatActivity implements StagesAdapter.
     @Override
     public void onListItemClick(int index) {
         Intent i = new Intent(this, GoalsActivity.class);
+        i.putStringArrayListExtra("Goals", appData.getStages().get(index).getGoals());
         startActivity(i);
     }
 }

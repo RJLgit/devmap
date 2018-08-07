@@ -9,13 +9,17 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesViewHolder> {
     final private ListItemClickListener mListItemClickListener;
     private Context c;
+    private List<StageData> stageDataList;
 
-    public StagesAdapter(Context context, ListItemClickListener listItemClickListener) {
+    public StagesAdapter(Context context, ListItemClickListener listItemClickListener, List<StageData> sDataList) {
         c = context;
         mListItemClickListener = listItemClickListener;
+        stageDataList = sDataList;
     }
 
     //Defines the interface for when an item is clicked in the recycler view.
@@ -39,13 +43,13 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     @Override
     public void onBindViewHolder(@NonNull StagesAdapter.StagesViewHolder holder, int position) {
         // bind data when it has been created in its own class.
-        holder.bind("Stage x", false);
+        holder.bind(stageDataList.get(position).getStageName(), false);
     }
 
     @Override
     public int getItemCount() {
         // return number of data items once class has been made with data in it.
-        return 6;
+        return stageDataList.size();
     }
 
     // Define the StagesViewHolder class

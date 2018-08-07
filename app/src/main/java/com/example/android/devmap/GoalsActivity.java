@@ -1,10 +1,13 @@
 package com.example.android.devmap;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
     private GoalsAdapter myAdapter;
@@ -19,7 +22,12 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-        myAdapter = new GoalsAdapter(this, this);
+        Intent i = getIntent();
+        //Need to add a check to check this is not null
+        ArrayList<String> goals = i.getStringArrayListExtra("Goals");
+
+
+        myAdapter = new GoalsAdapter(this, this, goals);
         myRecyclerView.setAdapter(myAdapter);
     }
 

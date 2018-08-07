@@ -9,15 +9,19 @@ import android.widget.TextView;
 import android.content.Context;
 import android.view.LayoutInflater;
 
+import java.util.ArrayList;
+
 
 public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHolder> {
 
     final private ListItemClickListener mListItemClickListener;
     private Context c;
+    private ArrayList<String> goals;
 
-    public GoalsAdapter (Context context, ListItemClickListener listItemClickListener){
+    public GoalsAdapter (Context context, ListItemClickListener listItemClickListener, ArrayList<String> g){
         c = context;
         mListItemClickListener = listItemClickListener;
+        goals = g;
     }
 
     //defines the interface for when an item is clicked in the recycler view
@@ -38,12 +42,12 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GoalsAdapter.GoalsViewHolder holder, int position) {
-        holder.bind("Goal x", false);
+        holder.bind(goals.get(position), false);
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return goals.size();
     }
 
     // define the GoalViewHolders class

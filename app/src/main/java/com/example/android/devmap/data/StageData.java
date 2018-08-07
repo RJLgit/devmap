@@ -1,8 +1,9 @@
-package com.example.android.devmap;
+package com.example.android.devmap.data;
+
+import com.example.android.devmap.data.GoalsData;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class StageData implements Serializable{
     private GoalsData goal1;

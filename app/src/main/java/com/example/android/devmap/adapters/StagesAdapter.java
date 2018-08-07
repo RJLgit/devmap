@@ -1,4 +1,4 @@
-package com.example.android.devmap;
+package com.example.android.devmap.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.example.android.devmap.R;
+import com.example.android.devmap.data.StageData;
 
 import java.util.List;
 

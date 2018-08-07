@@ -1,4 +1,4 @@
-package com.example.android.devmap;
+package com.example.android.devmap.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,10 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.content.Context;
 import android.view.LayoutInflater;
+
+import com.example.android.devmap.R;
+import com.example.android.devmap.data.GoalsData;
+import com.example.android.devmap.data.StageData;
 
 import java.util.ArrayList;
 

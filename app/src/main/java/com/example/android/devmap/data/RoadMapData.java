@@ -1,4 +1,4 @@
-package com.example.android.devmap;
+package com.example.android.devmap.data;
 
 import java.util.ArrayList;
 import java.util.List;

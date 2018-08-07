@@ -1,10 +1,14 @@
-package com.example.android.devmap;
+package com.example.android.devmap.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.example.android.devmap.R;
+import com.example.android.devmap.data.RoadMapData;
+import com.example.android.devmap.adapters.StagesAdapter;
 
 public class StagesActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
     private StagesAdapter myAdapter;

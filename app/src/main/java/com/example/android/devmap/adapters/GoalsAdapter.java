@@ -48,7 +48,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GoalsAdapter.GoalsViewHolder holder, int position) {
-        holder.bind(stageArray.get(position), false);
+        holder.bind(stageArray.get(position));
     }
 
     @Override
@@ -68,9 +68,9 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
             itemView.setOnClickListener(this);
         }
 
-        void bind(GoalsData s, boolean b){
+        void bind(GoalsData s){
             goalTextView.setText(s.getGoal());
-            goalCheckBox.setChecked(b);
+            goalCheckBox.setChecked(s.getProgress());
         }
         @Override
         public void onClick(View view) {

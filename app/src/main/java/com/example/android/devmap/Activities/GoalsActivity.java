@@ -11,6 +11,8 @@ import com.example.android.devmap.adapters.GoalsAdapter;
 import com.example.android.devmap.R;
 import com.example.android.devmap.data.StageData;
 
+import java.util.List;
+
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
     private GoalsAdapter myAdapter;
     RecyclerView myRecyclerView;
@@ -26,9 +28,11 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
 
         Intent i = getIntent();
         //Need to add a check to check this is not null
-        StageData stage = (StageData) i.getSerializableExtra("Stage");
-        myAdapter = new GoalsAdapter(this, this, stage);
-        myRecyclerView.setAdapter(myAdapter);
+        if (i.hasExtra("Stage")) {
+            StageData stage = (StageData) i.getSerializableExtra("Stage");
+            myAdapter = new GoalsAdapter(this, this, stage);
+            myRecyclerView.setAdapter(myAdapter);
+        }
     }
 
     @Override

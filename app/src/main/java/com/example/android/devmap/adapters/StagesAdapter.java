@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.android.devmap.R;
@@ -46,7 +45,7 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     @Override
     public void onBindViewHolder(@NonNull StagesAdapter.StagesViewHolder holder, int position) {
         // bind data when it has been created in its own class.
-        holder.bind(stageDataList.get(position).getStageName(), false);
+        holder.bind(stageDataList.get(position).getStageName(), stageDataList.get(position).getStageProgress() );
     }
 
     @Override
@@ -58,18 +57,18 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     // Define the StagesViewHolder class
     class StagesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView stageTextView;
-        CheckBox stageCheckBox;
+        TextView stageProgressBox;
 
         public StagesViewHolder(final View itemView) {
             super(itemView);
             stageTextView = (TextView) itemView.findViewById(R.id.stageNumber);
-            stageCheckBox = (CheckBox) itemView.findViewById(R.id.stageCheckBox);
+            stageProgressBox = (TextView) itemView.findViewById(R.id.stageProgressTextView);
             itemView.setOnClickListener(this);
         }
 
-        void bind(String s, boolean b) {
+        void bind(String s, String b) {
             stageTextView.setText(s);
-            stageCheckBox.setChecked(b);
+            stageProgressBox.setText(b);
             // find out how to set the checkbox to the boolean value of b, designating whether it is completed or not?
         }
 

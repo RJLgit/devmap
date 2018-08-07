@@ -6,25 +6,25 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public class RoadMapActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
+public class StagesActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
     private StagesAdapter myAdapter;
     RecyclerView myRecyclerView;
-    private AppData appData;
+    private RoadMapData roadMapData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_road_map);
-        myRecyclerView = (RecyclerView) findViewById(R.id.stages_recycle_view);
+        setContentView(R.layout.activity_stages);
+        myRecyclerView = findViewById(R.id.stages_recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-        appData = new AppData();
-        appData.populateData();
+        roadMapData = new RoadMapData();
+        roadMapData.populateData();
 
 
-        myAdapter = new StagesAdapter(this, this, appData.getStages());
+        myAdapter = new StagesAdapter(this, this, roadMapData.getStages());
 
         myRecyclerView.setAdapter(myAdapter);
     }
@@ -32,7 +32,7 @@ public class RoadMapActivity extends AppCompatActivity implements StagesAdapter.
     @Override
     public void onListItemClick(int index) {
         Intent i = new Intent(this, GoalsActivity.class);
-        i.putStringArrayListExtra("Goals", appData.getStages().get(index).getGoals());
-        startActivity(i);
+        Intent intent = i.putExtra("Stage", roadMapData.getStages().get(index));
+        startActivity(intent);
     }
 }

@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RoadMapActivity"
+            android:name=".StagesActivity"
             android:label="@string/road_map_activity_label"/>
         <activity
             android:name=".GoalsActivity"

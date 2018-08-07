@@ -1,17 +1,18 @@
 package com.example.android.devmap;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StageData {
-    private String goal1;
-    private String goal2;
-    private String goal3;
-    private String goal4;
-    private String goal5;
+public class StageData implements Serializable{
+    private GoalsData goal1;
+    private GoalsData goal2;
+    private GoalsData goal3;
+    private GoalsData goal4;
+    private GoalsData goal5;
     private String stageName;
 
-    public StageData(String a, String b, String c, String d, String e, String f) {
+    public StageData(String a, GoalsData b, GoalsData c, GoalsData d, GoalsData e, GoalsData f) {
         stageName = a;
         goal1 = b;
         goal2 = c;
@@ -20,8 +21,8 @@ public class StageData {
         goal5 = f;
     }
 
-    public ArrayList<String> getGoals() {
-        ArrayList<String> result = new ArrayList<String>();
+    public ArrayList<GoalsData> getGoals() {
+        ArrayList<GoalsData> result = new ArrayList<>();
         if (goal1 != null) {
             result.add(goal1);
         }

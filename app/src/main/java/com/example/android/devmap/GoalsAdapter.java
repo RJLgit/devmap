@@ -16,12 +16,14 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     final private ListItemClickListener mListItemClickListener;
     private Context c;
-    private ArrayList<String> goals;
+    private StageData stage;
+    private ArrayList<GoalsData> stageArray;
 
-    public GoalsAdapter (Context context, ListItemClickListener listItemClickListener, ArrayList<String> g){
+    public GoalsAdapter (Context context, ListItemClickListener listItemClickListener, StageData s){
         c = context;
         mListItemClickListener = listItemClickListener;
-        goals = g;
+        stage = s;
+        stageArray = stage.getGoals();
     }
 
     //defines the interface for when an item is clicked in the recycler view
@@ -42,12 +44,12 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GoalsAdapter.GoalsViewHolder holder, int position) {
-        holder.bind(goals.get(position), false);
+        holder.bind(stageArray.get(position), false);
     }
 
     @Override
     public int getItemCount() {
-        return goals.size();
+        return stageArray.size();
     }
 
     // define the GoalViewHolders class
@@ -62,8 +64,8 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
             itemView.setOnClickListener(this);
         }
 
-        void bind(String s, boolean b){
-            goalTextView.setText(s);
+        void bind(GoalsData s, boolean b){
+            goalTextView.setText(s.getGoal());
             goalCheckBox.setChecked(b);
         }
         @Override

@@ -24,10 +24,8 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
 
         Intent i = getIntent();
         //Need to add a check to check this is not null
-        ArrayList<String> goals = i.getStringArrayListExtra("Goals");
-
-
-        myAdapter = new GoalsAdapter(this, this, goals);
+        StageData stage = (StageData) i.getSerializableExtra("Stage");
+        myAdapter = new GoalsAdapter(this, this, stage);
         myRecyclerView.setAdapter(myAdapter);
     }
 

@@ -13,7 +13,7 @@ import com.example.android.devmap.adapters.StagesAdapter;
 public class StagesActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
     private StagesAdapter myAdapter;
     RecyclerView myRecyclerView;
-    public static RoadMapData roadMapData = new RoadMapData();
+    private static final RoadMapData roadMapData = new RoadMapData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +26,16 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
 
 
 
-                if (roadMapData.getStages().size() == 0) {
-                    roadMapData.populateData();
-                }
 
 
-
-        myAdapter = new StagesAdapter(this, this, roadMapData.getStages());
+        myAdapter = new StagesAdapter(this, this, getInstance().getStages());
 
         myRecyclerView.setAdapter(myAdapter);
     }
 
-
+public static RoadMapData getInstance() {
+        return roadMapData;
+}
 
     @Override
     public void onListItemClick(int index) {

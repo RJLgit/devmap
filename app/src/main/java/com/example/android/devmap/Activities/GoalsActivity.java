@@ -32,6 +32,7 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
             public void onClick(View view) {
                 Intent i = new Intent(GoalsActivity.this, StagesActivity.class);
                 startActivity(i);
+
             }
         });
         Intent i = getIntent();

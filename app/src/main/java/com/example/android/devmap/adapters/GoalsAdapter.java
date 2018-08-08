@@ -73,13 +73,10 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
             super(itemView);
             goalTextView = itemView.findViewById(R.id.goalNumber);
             goalCheckBox = itemView.findViewById(R.id.goalCheckBox);
-            goalCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            goalCheckBox.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                     goalsData.setProgress(b);
-                        // this shows the goalsdata boolean value is being updated
-                    Toast.makeText(itemView.getContext(), "Checkbox updated" + " " + goalsData.getGoal() + " " + goalsData.getProgress(), Toast.LENGTH_SHORT).show();
+                public void onClick(View view) {
+                    goalsData.setProgress(goalCheckBox.isChecked());
                 }
             });
             itemView.setOnClickListener(this);

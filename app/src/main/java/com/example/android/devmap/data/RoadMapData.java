@@ -8,6 +8,7 @@ public class RoadMapData {
    // GoalsData g, GoalsData g1, GoalsData g2, GoalsData g3, GoalsData g4, GoalsData g5, GoalsData g6, GoalsData g7, GoalsData g8, GoalsData g9, GoalsData g10, GoalsData g11
     public RoadMapData() {
         stages = new ArrayList<StageData>();
+        populateData();
     }
 
     public void populateData() {

@@ -7,4 +7,8 @@
     <string name="main_button_android_roadmap">Android Development Road Map</string>
     <string name="road_map_activity_label">Stages</string>
     <string name="goals_activity_label">Goals</string>
+    <string name="goals_summary_activity">Goal Summary</string>
+    <string name="stage_data_in_progress">in progress</string>
+    <string name="stage_data_completed">completed</string>
+    <string name="stage_data_not_started">not started</string>
 </resources>

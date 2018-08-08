@@ -38,5 +38,8 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
     @Override
     public void onListItemClick(int index) {
         Toast.makeText(this, "intent for goal details here", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);
+
+        startActivity(i);
     }
 }

@@ -16,4 +16,8 @@ public class GoalsData implements Serializable{
     public Boolean getProgress(){
         return progress;
     }
+
+    public void setProgress(boolean b) {
+        progress = b;
+    }
 }

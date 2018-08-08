@@ -1,4 +1,4 @@
-package com.example.android.devmap;
+package com.example.android.devmap.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.example.android.devmap.adapters.GoalsAdapter;
+import com.example.android.devmap.R;
+import com.example.android.devmap.data.StageData;
 
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
     private GoalsAdapter myAdapter;

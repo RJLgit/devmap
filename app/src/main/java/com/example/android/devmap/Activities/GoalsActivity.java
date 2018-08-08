@@ -16,7 +16,7 @@ import java.util.List;
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
     private GoalsAdapter myAdapter;
     RecyclerView myRecyclerView;
-
+    private StageData stage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         Intent i = getIntent();
         //Need to add a check to check this is not null
         if (i.hasExtra("Stage")) {
-            StageData stage = (StageData) i.getSerializableExtra("Stage");
+            stage = (StageData) i.getSerializableExtra("Stage");
             myAdapter = new GoalsAdapter(this, this, stage);
             myRecyclerView.setAdapter(myAdapter);
         }
@@ -39,7 +39,7 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
     public void onListItemClick(int index) {
         Toast.makeText(this, "intent for goal details here", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);
-
-        startActivity(i);
+        Intent intent = i.putExtra("Goal", stage.getGoals().get(index));
+        startActivity(intent);
     }
 }

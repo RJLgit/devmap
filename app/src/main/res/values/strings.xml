@@ -11,4 +11,13 @@
     <string name="stage_data_in_progress">in progress</string>
     <string name="stage_data_completed">completed</string>
     <string name="stage_data_not_started">not started</string>
+    <!-- preferences strings -->
+    <string name="action_settings">Settings</string>
+    <string name="pref_theme_label">App Theme</string>
+    <string name="pref_theme_default">Light</string>
+    <string name="pref_dark_label">Dark</string>
+    <string name="pref_light_label">Light</string>
+    <string name="pref_theme_key">theme</string>
+    <string name="pref_theme_dark_value" translatable="false">dark</string>
+    <string name="pref_theme_light_value" translatable="false">light</string>
 </resources>

@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.RoadMapActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,13 +19,22 @@
         </activity>
         <activity
             android:name=".Activities.StagesActivity"
-            android:label="@string/road_map_activity_label"/>
+            android:label="@string/road_map_activity_label" />
         <activity
             android:name=".Activities.GoalsActivity"
-            android:label="@string/goals_activity_label"></activity>
+            android:label="@string/goals_activity_label" />
         <activity
             android:name=".Activities.GoalSummaryActivity"
-            android:label="@string/goals_summary_activity"></activity>
+            android:label="@string/goals_summary_activity" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/action_settings"
+            android:parentActivityName=".Activities.RoadMapActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.RoadMapActivity"/>
+        </activity>
     </application>
 
 </manifest>

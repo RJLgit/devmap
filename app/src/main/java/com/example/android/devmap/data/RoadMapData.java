@@ -2,12 +2,13 @@ package com.example.android.devmap.data;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//This class is now a singleton class that is thread safe. Means only 1 instance will ever exist.
 public class RoadMapData {
     private static List<StageData> stages;
+    private static RoadMapData instance;
 
     public RoadMapData() {
-
+    populateData();
     }
 
     public void populateData() {
@@ -54,5 +55,24 @@ public class RoadMapData {
     public List<StageData> getStages() {
         return stages;
     }
+//This method is called when the checkbox is ticked. It finds matches the goal that had its checkbox ticked with the goal
+    // that is the corresponding one in the RoadMapData instance and updates its boolean.
+    public static void changeGoalBoolean(String s, boolean b) {
+        for (StageData st: stages) {
+            for (GoalsData gd: st.getGoals()) {
+                if (gd.getGoal().equals(s)) {
+                    gd.setProgress(b);
+                }
+            }
+        }
+    }
+
+    public static synchronized RoadMapData getInstance() {
+        if (instance == null) {
+            instance = new RoadMapData();
+        }
+        return instance;
+    }
+
 
 }

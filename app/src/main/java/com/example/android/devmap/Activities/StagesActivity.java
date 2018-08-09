@@ -24,11 +24,33 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-        roadMapData = new RoadMapData();
-        roadMapData.populateData();
+        /*roadMapData = new RoadMapData();
+        if (roadMapData.getStages() != null) {
+            if (roadMapData.getStages().size() == 0) {
+                roadMapData.populateData();
+            }
+        }*/
+        myAdapter = new StagesAdapter(this, this, RoadMapData.getInstance().getStages());
 
+        myRecyclerView.setAdapter(myAdapter);
+    }
+    /*Added onresume to make sure that when you go back to this activity it updates the stage progress*/
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_stages);
+        myRecyclerView = findViewById(R.id.stages_recycle_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        myRecyclerView.setLayoutManager(layoutManager);
+        myRecyclerView.setHasFixedSize(true);
 
-        myAdapter = new StagesAdapter(this, this, roadMapData.getStages());
+        /*roadMapData = new RoadMapData();
+        if (roadMapData.getStages() != null) {
+            if (roadMapData.getStages().size() == 0) {
+                roadMapData.populateData();
+            }
+        }*/
+        myAdapter = new StagesAdapter(this, this, RoadMapData.getInstance().getStages());
 
         myRecyclerView.setAdapter(myAdapter);
     }
@@ -36,7 +58,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
     @Override
     public void onListItemClick(int index) {
         Intent i = new Intent(this, GoalsActivity.class);
-        Intent intent = i.putExtra("Stage", roadMapData.getStages().get(index));
+        Intent intent = i.putExtra("Stage", RoadMapData.getInstance().getStages().get(index));
         startActivity(intent);
     }
 }

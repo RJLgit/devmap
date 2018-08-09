@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.devmap.R;
+import com.example.android.devmap.data.RoadMapData;
 import com.example.android.devmap.data.StageData;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     @Override
     public void onBindViewHolder(@NonNull StagesAdapter.StagesViewHolder holder, int position) {
         // bind data when it has been created in its own class.
-        holder.bind(stageDataList.get(position).getStageName(), stageDataList.get(position).getStageProgress() );
+        holder.bind(RoadMapData.getInstance().getStages().get(position).getStageName(), RoadMapData.getInstance().getStages().get(position).getStageProgress() );
     }
 
     @Override

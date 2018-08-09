@@ -5,12 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.example.android.devmap.R;
 import com.example.android.devmap.data.GoalsData;
+import com.example.android.devmap.data.RoadMapData;
 import com.example.android.devmap.data.StageData;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GoalsAdapter.GoalsViewHolder holder, int position) {
+        holder.setGoalsData(stageArray.get(position));
         holder.bind(stageArray.get(position));
     }
 
@@ -60,12 +63,24 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
     class GoalsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView goalTextView;
         CheckBox goalCheckBox;
+        GoalsData goalsData;
 
         public GoalsViewHolder (final View itemView){
             super(itemView);
             goalTextView = itemView.findViewById(R.id.goalNumber);
             goalCheckBox = itemView.findViewById(R.id.goalCheckBox);
+            goalCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    String s = goalsData.getGoal();
+                    RoadMapData.changeGoalBoolean(s, b);
+                }
+            });
             itemView.setOnClickListener(this);
+        }
+
+        void setGoalsData(GoalsData g) {
+            goalsData = g;
         }
 
         void bind(GoalsData s){

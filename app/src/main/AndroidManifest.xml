@@ -23,6 +23,9 @@
         <activity
             android:name=".Activities.GoalsActivity"
             android:label="@string/goals_activity_label"></activity>
+        <activity
+            android:name=".Activities.GoalSummaryActivity"
+            android:label="@string/goals_summary_activity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.example.android.devmap.data;
 
+import android.content.Context;
+
 import com.example.android.devmap.data.GoalsData;
 
 import java.io.Serializable;
@@ -7,7 +9,6 @@ import java.util.ArrayList;
 
 public class StageData implements Serializable {
     private ArrayList<GoalsData> GoalsDataArray;
-
     private String stageName;
 
     public StageData(String a, ArrayList<GoalsData> ga) {
@@ -24,8 +25,10 @@ public class StageData implements Serializable {
         return stageName;
     }
 
+
     public String getStageProgress() {
         int result = 0;
+
         for (GoalsData goal : GoalsDataArray) {
             Boolean progress = goal.getProgress();
                 if (progress == true) {

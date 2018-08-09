@@ -11,10 +11,12 @@ import com.example.android.devmap.adapters.GoalsAdapter;
 import com.example.android.devmap.R;
 import com.example.android.devmap.data.StageData;
 
+import java.util.List;
+
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
     private GoalsAdapter myAdapter;
     RecyclerView myRecyclerView;
-
+    private StageData stage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +28,18 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
 
         Intent i = getIntent();
         //Need to add a check to check this is not null
-        StageData stage = (StageData) i.getSerializableExtra("Stage");
-        myAdapter = new GoalsAdapter(this, this, stage);
-        myRecyclerView.setAdapter(myAdapter);
+        if (i.hasExtra("Stage")) {
+            stage = (StageData) i.getSerializableExtra("Stage");
+            myAdapter = new GoalsAdapter(this, this, stage);
+            myRecyclerView.setAdapter(myAdapter);
+        }
     }
 
     @Override
     public void onListItemClick(int index) {
         Toast.makeText(this, "intent for goal details here", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);
+        Intent intent = i.putExtra("Goal", stage.getGoals().get(index));
+        startActivity(intent);
     }
 }

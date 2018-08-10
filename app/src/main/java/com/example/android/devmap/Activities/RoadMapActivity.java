@@ -22,8 +22,10 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if (s.equals(getString(R.string.pref_theme_key))){
+        if (s.equals(getString(R.string.pref_theme_key))) {
+
             ThemeUtils.changeTheme(this, sharedPreferences.getString(s, getResources().getString(R.string.pref_theme_light_value)));
+
         }
     }
 
@@ -42,6 +44,26 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
                 startActivity(i);
             }
         });
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpSharedPreferences();
+        setContentView(R.layout.activity_main);
+        roadmapButton = (Button) findViewById(R.id.roadmap_button);
+
+        roadmapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RoadMapActivity.this, StagesActivity.class);
+
+                startActivity(i);
+            }
+        });
+
 
     }
 

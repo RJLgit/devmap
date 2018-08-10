@@ -1,6 +1,8 @@
 package com.example.android.devmap.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +12,7 @@ import android.widget.Toast;
 import com.example.android.devmap.adapters.GoalsAdapter;
 import com.example.android.devmap.R;
 import com.example.android.devmap.data.StageData;
+import com.example.android.devmap.settings.ThemeUtils;
 
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
+        ThemeUtils.changeTheme(this, s);
         setContentView(R.layout.activity_goals);
         myRecyclerView = findViewById(R.id.goals_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -33,6 +39,7 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
             myAdapter = new GoalsAdapter(this, this, stage);
             myRecyclerView.setAdapter(myAdapter);
         }
+
     }
 
     @Override

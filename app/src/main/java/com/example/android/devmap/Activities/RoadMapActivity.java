@@ -1,6 +1,9 @@
 package com.example.android.devmap.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,17 +14,26 @@ import android.widget.Button;
 
 import com.example.android.devmap.R;
 import com.example.android.devmap.settings.SettingsActivity;
+import com.example.android.devmap.settings.ThemeUtils;
 
 
-public class RoadMapActivity extends AppCompatActivity {
+public class RoadMapActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     Button roadmapButton;
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if (s.equals(getString(R.string.pref_theme_key))){
+            ThemeUtils.changeTheme(this, sharedPreferences.getString(s, getResources().getString(R.string.pref_theme_light_value)));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setUpSharedPreferences();
         setContentView(R.layout.activity_main);
         roadmapButton = (Button) findViewById(R.id.roadmap_button);
+
         roadmapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,6 +42,22 @@ public class RoadMapActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+    }
+
+    private void setUpSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
+        ThemeUtils.changeTheme(this, s);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override

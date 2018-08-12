@@ -67,15 +67,6 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
 
     }
 
-    private void setUpSharedPreferences() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
-        ThemeUtils.changeTheme(this, s);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-    }
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -106,5 +97,12 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    private void setUpSharedPreferences() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
+        ThemeUtils.changeTheme(this, s);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 }

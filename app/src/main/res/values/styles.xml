@@ -10,7 +10,7 @@
     </style>
 
     <style name="DarkTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        
+
     </style>
 
     <style name="LightTheme" parent="Theme.AppCompat.Light.DarkActionBar">

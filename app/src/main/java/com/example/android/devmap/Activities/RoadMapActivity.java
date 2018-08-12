@@ -83,6 +83,13 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.roadmap_menu, menu);

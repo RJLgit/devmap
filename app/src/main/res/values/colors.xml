@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- light colors -->
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <!-- Dark colors -->
+
+    <color name="colorDarkPrimary">#424242</color>
+    <color name="colorDarkPrimaryDarker">#2F3437</color>
+    <color name="colorDarkAccent">#373C3F</color>
+    <color name="textColorDark">#CACCCE</color>
+
 </resources>

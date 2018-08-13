@@ -48,10 +48,12 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
 
     }
 
+
+
     @Override
     protected void onResume() {
-        super.onResume();
         setUpSharedPreferences();
+        super.onResume();
         setContentView(R.layout.activity_main);
         roadmapButton = (Button) findViewById(R.id.roadmap_button);
 

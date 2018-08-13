@@ -55,7 +55,7 @@ public class RoadMapData {
     public List<StageData> getStages() {
         return stages;
     }
-//This method is called when the checkbox is ticked. It finds matches the goal that had its checkbox ticked with the goal
+//This method is called when the checkbox is ticked. It finds matches the Goal that had its checkbox ticked with the Goal
     // that is the corresponding one in the RoadMapData instance and updates its boolean.
     public static void changeGoalBoolean(String s, boolean b) {
         for (StageData st: stages) {

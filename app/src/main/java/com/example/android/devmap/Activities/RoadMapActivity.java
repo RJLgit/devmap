@@ -1,11 +1,14 @@
 package com.example.android.devmap.Activities;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +22,7 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 public class RoadMapActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     Button roadmapButton;
+    private static final String TAG = "RoadMapActivity";
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -94,6 +98,19 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
             Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
                     startActivity(startSettingsActivity);
             return true;
+        }
+
+        if (id == R.id.contact_menu) {
+            String email = "DevMap@example.com";
+            String mailto = "mailto:"+ email;
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse(mailto));
+            // try intent
+            try {
+                startActivity(emailIntent);
+            } catch (ActivityNotFoundException e) {
+                Log.e(TAG, "sendEmailIntent: ", e);
+            }
         }
         return super.onOptionsItemSelected(item);
 

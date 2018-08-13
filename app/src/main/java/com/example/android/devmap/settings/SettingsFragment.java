@@ -33,7 +33,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             setPreferenceSummary(preference, s);
         }
         // initialise contact us button, setup listener and explicit intent
-        Preference button = (Preference)getPreferenceManager().findPreference("contactEmailLink");
+       /* Preference button = (Preference)getPreferenceManager().findPreference("contactEmailLink");
         if (button != null) {
             button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -42,7 +42,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     return true;
                 }
             });
-        }
+        }*/
     }
 
     @Override
@@ -77,7 +77,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     }
 
     // method
-    private void sendEmailIntent() {
+   /* private void sendEmailIntent() {
         // change email send address
         String email = "DevMap@example.com";
         String mailto = "mailto:"+ email;
@@ -90,6 +90,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             Log.e(TAG, "sendEmailIntent: ", e);
         }
 
-    }
+    }*/
 }
 

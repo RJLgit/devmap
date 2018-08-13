@@ -7,8 +7,8 @@
         android:key="@string/pref_theme_key"
         android:title="@string/pref_theme_label"
         />
-   <!-- <Preference
+    <Preference
         android:title="Click to Contact Us"
         android:key="contactEmailLink"
-        />-->
+        />
 </PreferenceScreen>

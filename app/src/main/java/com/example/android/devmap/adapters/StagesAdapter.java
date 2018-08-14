@@ -1,5 +1,6 @@
 package com.example.android.devmap.adapters;
 
+import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,18 +12,19 @@ import android.widget.TextView;
 import com.example.android.devmap.R;
 import com.example.android.devmap.data.RoadMapData;
 import com.example.android.devmap.data.StageData;
+import com.example.android.devmap.database.Stage;
+import com.example.android.devmap.database.StageRepository;
 
 import java.util.List;
 
 public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesViewHolder> {
     final private ListItemClickListener mListItemClickListener;
     private Context c;
-    private List<StageData> stageDataList;
+    private List<Stage> stageDataList;
 
-    public StagesAdapter(Context context, ListItemClickListener listItemClickListener, List<StageData> sDataList) {
+    public StagesAdapter(Context context, ListItemClickListener listItemClickListener) {
         c = context;
         mListItemClickListener = listItemClickListener;
-        stageDataList = sDataList;
     }
 
     //Defines the interface for when an item is clicked in the recycler view.
@@ -46,13 +48,20 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     @Override
     public void onBindViewHolder(@NonNull StagesAdapter.StagesViewHolder holder, int position) {
         // bind data when it has been created in its own class.
-        holder.bind(RoadMapData.getInstance().getStages().get(position).getStageName(), RoadMapData.getInstance().getStages().get(position).getStageProgress() );
+        holder.bind(stageDataList.get(position).getName(), "ole");
+    }
+
+    public void setStages(List<Stage> stages) {
+        stageDataList = stages;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
         // return number of data items once class has been made with data in it.
-        return stageDataList.size();
+        if (stageDataList !=null)
+            return stageDataList.size();
+        else return 0;
     }
 
     // Define the StagesViewHolder class

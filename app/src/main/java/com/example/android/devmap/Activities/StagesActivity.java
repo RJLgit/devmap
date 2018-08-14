@@ -17,6 +17,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
     private StagesAdapter myAdapter;
     RecyclerView myRecyclerView;
     private RoadMapData roadMapData;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

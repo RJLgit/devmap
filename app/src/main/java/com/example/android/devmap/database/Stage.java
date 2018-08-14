@@ -21,15 +21,19 @@ public class Stage {
     private int mRoadMapReference;
 
 
-    public Stage(String name, String summary, int road){
-        this.mName = name;
-        this.mSummary = summary;
-        this.mRoadMapReference = road;
+    public Stage(String mName, String mSummary, int mRoadMapReference){
+        this.mName = mName;
+        this.mSummary = mSummary;
+        this.mRoadMapReference = mRoadMapReference;
     }
 
     public String getName() { return mName; }
 
-    public String getmSummary() { return mSummary; }
+    public String getSummary() { return mSummary; }
 
     public int getRoadMapReference() { return mRoadMapReference; }
+
+    public int getId() { return id; }
+
+    public void setId(int i) { id = i; }
 }

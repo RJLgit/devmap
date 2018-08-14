@@ -22,16 +22,16 @@ public class Goal {
     private Boolean mProgress;
 
     @ColumnInfo(name="webUrl")
-    private Uri mWebLink;
+    private String mWebLink;
 
     @ColumnInfo(name="stage_map_reference")
     private int mStageReference;
 
-    public Goal(String name, String summary, Boolean progress, int stage){
-        this.mName = name;
-        this.mSummary = summary;
-        this.mProgress = progress;
-        this.mStageReference = stage;
+    public Goal(String mName, String mSummary, Boolean mProgress, int mStageReference){
+        this.mName = mName;
+        this.mSummary = mSummary;
+        this.mProgress = mProgress;
+        this.mStageReference = mStageReference;
     }
 
     public String getName(){ return this.mName; }
@@ -42,7 +42,13 @@ public class Goal {
 
     public int getStage(){ return this.mStageReference; }
 
-    public Uri getWebLink(){ return this.mWebLink; }
+    public String getWebLink(){ return this.mWebLink; }
 
-    public int getmStageReference() { return mStageReference; }
+    public int getStageReference() { return mStageReference; }
+
+    public int getId() {return id;}
+
+    public void setWebLink(String s) { mWebLink = s; }
+
+    public void setId(int i) { id = i; }
 }

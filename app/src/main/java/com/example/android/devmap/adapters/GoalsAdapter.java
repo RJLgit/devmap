@@ -14,8 +14,11 @@ import com.example.android.devmap.R;
 import com.example.android.devmap.data.GoalsData;
 import com.example.android.devmap.data.RoadMapData;
 import com.example.android.devmap.data.StageData;
+import com.example.android.devmap.database.Goal;
+import com.example.android.devmap.database.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHolder> {
@@ -23,13 +26,16 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
     final private ListItemClickListener mListItemClickListener;
     private Context c;
     private StageData stage;
-    private ArrayList<GoalsData> stageArray;
+    private List<Goal> stageArray;
 
-    public GoalsAdapter (Context context, ListItemClickListener listItemClickListener, StageData s){
+    public GoalsAdapter (Context context, ListItemClickListener listItemClickListener){
         c = context;
         mListItemClickListener = listItemClickListener;
-        stage = s;
-        stageArray = stage.getGoals();
+    }
+
+    public void setGoals(List<Goal> goals) {
+        stageArray = goals;
+        notifyDataSetChanged();
     }
 
     //defines the interface for when an item is clicked in the recycler view
@@ -50,13 +56,15 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GoalsAdapter.GoalsViewHolder holder, int position) {
-        holder.setGoalsData(stageArray.get(position));
+        //holder.setGoalsData(stageArray.get(position));
         holder.bind(stageArray.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return stageArray.size();
+        if (stageArray !=null)
+            return stageArray.size();
+        else return 0;
     }
 
     // define the GoalViewHolders class
@@ -69,13 +77,13 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
             super(itemView);
             goalTextView = itemView.findViewById(R.id.goalNumber);
             goalCheckBox = itemView.findViewById(R.id.goalCheckBox);
-            goalCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            /*goalCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     String s = goalsData.getGoal();
                     RoadMapData.changeGoalBoolean(s, b);
                 }
-            });
+            });*/
             itemView.setOnClickListener(this);
         }
 
@@ -83,8 +91,8 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
             goalsData = g;
         }
 
-        void bind(GoalsData s){
-            goalTextView.setText(s.getGoal());
+        void bind(Goal s){
+            goalTextView.setText(s.getName());
             goalCheckBox.setChecked(s.getProgress());
         }
         @Override

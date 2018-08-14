@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "stage_table")
 public class Stage {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
 
     @ColumnInfo(name="name")
@@ -21,7 +21,8 @@ public class Stage {
     private int mRoadMapReference;
 
 
-    public Stage(String mName, String mSummary, int mRoadMapReference){
+    public Stage(int id, String mName, String mSummary, int mRoadMapReference){
+        this.id = id;
         this.mName = mName;
         this.mSummary = mSummary;
         this.mRoadMapReference = mRoadMapReference;

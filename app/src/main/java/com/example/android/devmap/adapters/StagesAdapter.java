@@ -84,8 +84,8 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
 
         @Override
         public void onClick(View view) {
-            int clickedPosition = getAdapterPosition();
-            mListItemClickListener.onListItemClick(clickedPosition);
+            int stageIdClicked = stageDataList.get(getAdapterPosition()).getId();
+            mListItemClickListener.onListItemClick(stageIdClicked);
         }
     }
 }

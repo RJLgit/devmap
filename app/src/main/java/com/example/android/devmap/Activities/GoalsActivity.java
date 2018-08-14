@@ -28,18 +28,13 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
     RecyclerView myRecyclerView;
     private StageData stage;
     private GoalViewModel mGoalViewModel;
+    private int stageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGoalViewModel = ViewModelProviders.of(this).get(GoalViewModel.class);
 
-        mGoalViewModel.getmAllGoals().observe(this, new Observer<List<Goal>>() {
-            @Override
-            public void onChanged(@Nullable List<Goal> goals) {
-                myAdapter.setGoals(goals);
-            }
-        });
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
         ThemeUtils.changeTheme(this, s);
@@ -49,16 +44,23 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-        /*Intent i = getIntent();
-        //Need to add a check to check this is not null
-        if (i.hasExtra("Stage")) {
-            stage = (StageData) i.getSerializableExtra("Stage");
-            myAdapter = new GoalsAdapter(this, this);*/
         myAdapter = new GoalsAdapter(this, this);
 
+        Intent intent = getIntent();
+        //Need to add a check to check this is not null
+        if (intent.hasExtra("Stage")) {
+            stageId = intent.getIntExtra("Stage", 1);
+        }
+
+        mGoalViewModel = ViewModelProviders.of(this).get(GoalViewModel.class);
+
+        mGoalViewModel.getGoals(stageId).observe(this, new Observer<List<Goal>>() {
+            @Override
+            public void onChanged(@Nullable List<Goal> goals) {
+                myAdapter.setGoals(goals);
+            }
+        });
         myRecyclerView.setAdapter(myAdapter);
-
-
     }
 
     @Override

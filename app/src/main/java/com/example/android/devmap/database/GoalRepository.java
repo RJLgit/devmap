@@ -18,6 +18,8 @@ public class GoalRepository {
 
     LiveData<List<Goal>> getAllGoals() { return mAllGoals;}
 
+    LiveData<List<Goal>> getGoals(int i) { return mGoalDao.getStageGoals(i);}
+
     public void insert (Goal goal) { new insertAsyncTaskGoal(mGoalDao).execute(goal);}
 
     private static class insertAsyncTaskGoal extends AsyncTask<Goal, Void, Void> {

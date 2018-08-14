@@ -83,7 +83,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
     @Override
     public void onListItemClick(int index) {
         Intent i = new Intent(this, GoalsActivity.class);
-        //Intent intent = i.putExtra("Stage", index);
-        startActivity(i);
+        Intent intent = i.putExtra("Stage", index);
+        startActivity(intent);
     }
 }

@@ -20,7 +20,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
             synchronized (RoadStageGoalDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            RoadStageGoalDatabase.class, "roadMap_database")
+                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback)
                             .build();
 
                 }

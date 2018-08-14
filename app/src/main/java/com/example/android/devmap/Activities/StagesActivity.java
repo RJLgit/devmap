@@ -29,6 +29,14 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mStageViewModel = ViewModelProviders.of(this).get(StageViewModel.class);
+
+        mStageViewModel.getmAllStages().observe(this, new Observer<List<Stage>>() {
+            @Override
+            public void onChanged(@Nullable List<Stage> stages) {
+                myAdapter.setStages(stages);
+            }
+        });
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
@@ -46,15 +54,11 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
             }
         }*/
         myAdapter = new StagesAdapter(this, this);
-        mStageViewModel = ViewModelProviders.of(this).get(StageViewModel.class);
 
-        mStageViewModel.getmAllStages().observe(this, new Observer<List<Stage>>() {
-            @Override
-            public void onChanged(@Nullable List<Stage> stages) {
-                myAdapter.setStages(stages);
-            }
-        });
         myRecyclerView.setAdapter(myAdapter);
+
+
+
     }
     /*Added onresume to make sure that when you go back to this activity it updates the stage progress*/
 

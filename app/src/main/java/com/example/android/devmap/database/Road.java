@@ -16,13 +16,17 @@ public class Road {
     @ColumnInfo(name="summary")
     private String mSummary;
 
-    public Road(String name, String summary){
-        this.mName = name;
-        this.mSummary = summary;
+    public Road(String mName, String mSummary){
+        this.mName = mName;
+        this.mSummary = mSummary;
     }
 
     public String getName() { return mName; }
 
     public String getSummary() { return mSummary; }
+
+    public int getId() { return id; }
+
+    public void setId(int i) { id = i; }
 
 }

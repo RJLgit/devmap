@@ -4,6 +4,7 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -47,6 +48,8 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
         return INSTANCE;
     }
 
+
+
     public static void updateGoal(Goal goal) {
        INSTANCE.goalDao().update(goal);
     }
@@ -58,7 +61,9 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
         @Override
         public void onOpen (@NonNull SupportSQLiteDatabase db){
             super.onOpen(db);
-            new PopulateDbAsync(INSTANCE).execute();
+            if (INSTANCE == null) {
+                new PopulateDbAsync(INSTANCE).execute();
+            }
         }
 
 

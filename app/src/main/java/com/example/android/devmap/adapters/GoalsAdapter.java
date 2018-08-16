@@ -34,12 +34,10 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
     private StageData stage;
     private List<Goal> stageArray;
 
-   // private GoalViewModel goalViewModel;
 
     public GoalsAdapter (Context context, ListItemClickListener listItemClickListener){
         c = context;
         mListItemClickListener = listItemClickListener;
-
     }
 
     public void setGoals(List<Goal> goals) {
@@ -65,8 +63,6 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull GoalsAdapter.GoalsViewHolder holder, int position) {
-        holder.setContext(c);
-
         holder.setGoal(stageArray.get(position));
         holder.bind(stageArray.get(position));
     }
@@ -82,7 +78,6 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
     class GoalsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView goalTextView;
         CheckBox goalCheckBox;
-Context context;
         Goal goal;
         private AsyncTask backgroundTask;
 
@@ -104,9 +99,7 @@ Context context;
 
 
 
-void setContext(Context c) {
-            context = c;
-}
+
 
         void setGoal(Goal g) {
             goal = g;

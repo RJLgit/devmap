@@ -63,9 +63,6 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         myRecyclerView.setAdapter(myAdapter);
     }
 
-public void updateGoals(Goal goal) {
-        mGoalViewModel.update(goal);
-}
 
     @Override
     public void onListItemClick(int index) {

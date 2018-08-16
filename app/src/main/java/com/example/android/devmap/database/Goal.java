@@ -55,5 +55,4 @@ public class Goal {
 
     public void setId(int i) { id = i; }
 
-    //public void update() { RoadStageGoalDatabase.getDatabase(getApplicationContext()).updateGoal(this); }
 }

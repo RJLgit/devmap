@@ -10,20 +10,11 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.widget.Toast;
 
-import com.example.android.devmap.Activities.GoalsActivity;
 import com.example.android.devmap.R;
-import com.example.android.devmap.data.GoalsData;
-import com.example.android.devmap.data.RoadMapData;
-import com.example.android.devmap.data.StageData;
 import com.example.android.devmap.database.Goal;
-import com.example.android.devmap.database.GoalViewModel;
-import com.example.android.devmap.database.RoadStageGoalDatabase;
-import com.example.android.devmap.database.Stage;
 import com.example.android.devmap.database.UpdateDbClass;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,7 +22,6 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     final private ListItemClickListener mListItemClickListener;
     private Context c;
-    private StageData stage;
     private List<Goal> stageArray;
 
 

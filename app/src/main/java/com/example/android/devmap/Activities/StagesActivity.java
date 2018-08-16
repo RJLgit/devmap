@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.android.devmap.R;
-import com.example.android.devmap.data.RoadMapData;
 import com.example.android.devmap.adapters.StagesAdapter;
 import com.example.android.devmap.database.Stage;
 import com.example.android.devmap.database.StageViewModel;
@@ -23,7 +22,6 @@ import java.util.List;
 public class StagesActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
     private StagesAdapter myAdapter;
     RecyclerView myRecyclerView;
-    private RoadMapData roadMapData;
     private StageViewModel mStageViewModel;
 
     @Override

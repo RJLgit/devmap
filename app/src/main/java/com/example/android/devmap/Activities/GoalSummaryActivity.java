@@ -7,13 +7,11 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import com.example.android.devmap.R;
-import com.example.android.devmap.data.GoalsData;
 import com.example.android.devmap.settings.ThemeUtils;
 
 
 public class GoalSummaryActivity extends AppCompatActivity{
     private TextView mTextView;
-    private GoalsData goal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,13 +21,13 @@ public class GoalSummaryActivity extends AppCompatActivity{
         ThemeUtils.changeTheme(this, s);
         setContentView(R.layout.activity_goal_summary);
         mTextView = (TextView) findViewById(R.id.goals_summary_textview);
-
+        /*
         Intent i = getIntent();
         if (i.hasExtra("Goal")){
             String sum = i.getStringExtra("Goal");
             mTextView.setText(sum);
 
-        }
+        } */
 
     }
 }

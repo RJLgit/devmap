@@ -39,7 +39,9 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
             synchronized (RoadStageGoalDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+
                             RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback).allowMainThreadQueries()
+                            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .build();
 
                 }
@@ -132,5 +134,22 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
         }
 
     }
+
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+
+            database.execSQL(null);
+        }
+    };
+
+    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL(null);
+
+        }
+    };
 
 }

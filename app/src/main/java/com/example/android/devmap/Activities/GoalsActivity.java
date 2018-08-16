@@ -10,15 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.example.android.devmap.adapters.GoalsAdapter;
 import com.example.android.devmap.R;
-import com.example.android.devmap.data.StageData;
 import com.example.android.devmap.database.Goal;
 import com.example.android.devmap.database.GoalViewModel;
-import com.example.android.devmap.database.Stage;
-import com.example.android.devmap.database.StageViewModel;
 import com.example.android.devmap.settings.ThemeUtils;
 
 import java.util.List;
@@ -26,7 +22,6 @@ import java.util.List;
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
     private GoalsAdapter myAdapter;
     RecyclerView myRecyclerView;
-    private StageData stage;
     private GoalViewModel mGoalViewModel;
     private int stageId;
 
@@ -63,7 +58,7 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         myRecyclerView.setAdapter(myAdapter);
     }
 
-
+    
     @Override
     public void onListItemClick(int index) {
         Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);

@@ -26,8 +26,8 @@ public class GoalSummaryActivity extends AppCompatActivity{
 
         Intent i = getIntent();
         if (i.hasExtra("Goal")){
-            goal = (GoalsData) i.getSerializableExtra("Goal");
-            mTextView.setText(goal.getSummary());
+            String sum = i.getStringExtra("Goal");
+            mTextView.setText(sum);
 
         }
 

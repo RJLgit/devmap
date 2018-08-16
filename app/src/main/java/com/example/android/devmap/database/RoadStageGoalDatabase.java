@@ -28,8 +28,8 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public static Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
     public static Goal g4 = new Goal("Goal 4","Goal 4 for stage 1", false, 1);
     public static Goal g5 = new Goal("Goal 5","Goal 1 for stage 2", true, 2);
-    public static Goal g6 = new Goal("Goal 6","Goal 1 for stage 2", true, 2);
-    public static Goal g7 = new Goal("Goal 7","Goal 1 for stage 2", false, 2);
+    public static Goal g6 = new Goal("Goal 6","Goal 2 for stage 2", true, 2);
+    public static Goal g7 = new Goal("Goal 7","Goal 3 for stage 2", false, 2);
     public static Goal g8 = new Goal("Goal 8","Goal 1 for stage 3", true, 3);
     public static Goal g9 = new Goal("Goal 9","Goal 2 for stage 3", true, 3);
     public static Goal g10 = new Goal("Goal 10","Goal 3 for stage 3", true, 3);
@@ -39,7 +39,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
             synchronized (RoadStageGoalDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback)
+                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback).allowMainThreadQueries()
                             .build();
 
                 }

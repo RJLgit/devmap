@@ -24,6 +24,8 @@ public class GoalRepository {
 
     public void insert (Goal goal) { new insertAsyncTaskGoal(mGoalDao).execute(goal);}
 
+    public List<Goal> getListGoals(int i) { return mGoalDao.getListGoals(i); }
+
     private static class insertAsyncTaskGoal extends AsyncTask<Goal, Void, Void> {
         private GoalDao mAsyncTaskDao;
 

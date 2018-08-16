@@ -21,6 +21,9 @@ public interface GoalDao {
     @Query("SELECT * from goal_table WHERE stage_map_reference = :id ORDER BY id ASC")
     LiveData<List<Goal>> getStageGoals(int id);
 
+    @Query("SELECT * from goal_table WHERE stage_map_reference = :id ORDER BY id ASC")
+    List<Goal> getListGoals(int id);
+
     @Update
     void update(Goal g);
 

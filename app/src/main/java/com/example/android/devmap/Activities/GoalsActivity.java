@@ -67,7 +67,8 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
     @Override
     public void onListItemClick(int index) {
         Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);
-        Intent intent = i.putExtra("Goal", stage.getGoals().get(index));
+        List<Goal> lg = mGoalViewModel.getListGoals(stageId);
+        Intent intent = i.putExtra("Goal", lg.get(index).getSummary());
         startActivity(intent);
     }
 }

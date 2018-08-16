@@ -21,13 +21,13 @@ public class GoalSummaryActivity extends AppCompatActivity{
         ThemeUtils.changeTheme(this, s);
         setContentView(R.layout.activity_goal_summary);
         mTextView = (TextView) findViewById(R.id.goals_summary_textview);
-        /*
+
         Intent i = getIntent();
         if (i.hasExtra("Goal")){
             String sum = i.getStringExtra("Goal");
             mTextView.setText(sum);
 
-        } */
+        }
 
     }
 }

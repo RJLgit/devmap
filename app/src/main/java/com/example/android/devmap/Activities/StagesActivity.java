@@ -60,25 +60,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
 
 
     }
-    /*Added onresume to make sure that when you go back to this activity it updates the stage progress*/
 
-   /*@Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
-        ThemeUtils.changeTheme(this, s);
-        setContentView(R.layout.activity_stages);
-        myRecyclerView = findViewById(R.id.stages_recycle_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        myRecyclerView.setLayoutManager(layoutManager);
-        myRecyclerView.setHasFixedSize(true);
-
-        myAdapter = new StagesAdapter(this, this);
-
-        myRecyclerView.setAdapter(myAdapter);
-
-    }*/
 
     @Override
     public void onListItemClick(int index) {

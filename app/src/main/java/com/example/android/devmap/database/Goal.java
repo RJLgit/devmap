@@ -1,5 +1,6 @@
 package com.example.android.devmap.database;
 
+import android.app.Application;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -40,6 +41,8 @@ public class Goal {
 
     public Boolean getProgress(){ return this.mProgress; }
 
+    public void setProgress(boolean b) { mProgress = b; }
+
     public int getStage(){ return this.mStageReference; }
 
     public String getWebLink(){ return this.mWebLink; }
@@ -51,4 +54,6 @@ public class Goal {
     public void setWebLink(String s) { mWebLink = s; }
 
     public void setId(int i) { id = i; }
+
+    //public void update() { RoadStageGoalDatabase.getDatabase(getApplicationContext()).updateGoal(this); }
 }

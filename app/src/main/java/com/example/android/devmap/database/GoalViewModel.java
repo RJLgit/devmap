@@ -20,6 +20,8 @@ public class GoalViewModel extends AndroidViewModel{
 
     public LiveData<List<Goal>> getmAllGoals() { return mAllGoals; }
 
+    public void update(Goal goal) { mRepository.update(goal); }
+
     public void insert(Goal goal) { mRepository.insert(goal); }
 
     public LiveData<List<Goal>> getGoals(int i) { return mRepository.getGoals(i); }

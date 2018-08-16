@@ -38,7 +38,7 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         if (intent.hasExtra("Stage")) {
             stageId = intent.getIntExtra("Stage", 1);
         }
-        myAdapter = new GoalsAdapter(this, this);
+
         mGoalViewModel = ViewModelProviders.of(this).get(GoalViewModel.class);
 
         mGoalViewModel.getGoals(stageId).observe(this, new Observer<List<Goal>>() {
@@ -57,11 +57,15 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-
+        myAdapter = new GoalsAdapter(this, this);
 
 
         myRecyclerView.setAdapter(myAdapter);
     }
+
+public void updateGoals(Goal goal) {
+        mGoalViewModel.update(goal);
+}
 
     @Override
     public void onListItemClick(int index) {

@@ -14,6 +14,20 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract StageDao stageDao();
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE;
+    public static Road r = new Road("Android", "Android Dev pathway");
+    public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
+    public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
+    public static Stage s2 = new Stage(3,"Stage 3", "Do efg", 0);
+    public static Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
+    public static Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
+    public static Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
+    public static Goal g4 = new Goal("Goal 4","Goal 4 for stage 1", false, 1);
+    public static Goal g5 = new Goal("Goal 5","Goal 1 for stage 2", true, 2);
+    public static Goal g6 = new Goal("Goal 6","Goal 1 for stage 2", true, 2);
+    public static Goal g7 = new Goal("Goal 7","Goal 1 for stage 2", false, 2);
+    public static Goal g8 = new Goal("Goal 8","Goal 1 for stage 3", true, 3);
+    public static Goal g9 = new Goal("Goal 9","Goal 2 for stage 3", true, 3);
+    public static Goal g10 = new Goal("Goal 10","Goal 3 for stage 3", true, 3);
 
     public static RoadStageGoalDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -27,6 +41,10 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
             }
         }
         return INSTANCE;
+    }
+
+    public static void updateGoal(Goal goal) {
+       INSTANCE.goalDao().update(goal);
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()
@@ -49,6 +67,8 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
         private final GoalDao mGDao;
         private final RoadDao mRDao;
 
+
+
         PopulateDbAsync(RoadStageGoalDatabase db) {
             mDao = db.stageDao();
             mGDao = db.goalDao();
@@ -57,44 +77,35 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
 
         @Override
         protected Void doInBackground(final Void... params) {
-            mRDao.deleteAll();
+           /* mRDao.deleteAll();
             mGDao.deleteAll();
             mDao.deleteAll();
-            Road r = new Road("Android", "Android Dev pathway");
+
             mRDao.insert(r);
-            Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
-            Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
-            Stage s2 = new Stage(3,"Stage 3", "Do efg", 0);
+
             mDao.insert(s);
             mDao.insert(s1);
             mDao.insert(s2);
-            Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
-            Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
-            Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
-            Goal g4 = new Goal("Goal 4","Goal 4 for stage 1", false, 1);
+
             mGDao.insert(g1);
             mGDao.insert(g2);
             mGDao.insert(g3);
             mGDao.insert(g4);
 
 
-            Goal g5 = new Goal("Goal 5","Goal 1 for stage 2", true, 2);
-            Goal g6 = new Goal("Goal 6","Goal 1 for stage 2", true, 2);
-            Goal g7 = new Goal("Goal 7","Goal 1 for stage 2", false, 2);
+
             mGDao.insert(g5);
             mGDao.insert(g6);
             mGDao.insert(g7);
 
 
-            Goal g8 = new Goal("Goal 8","Goal 1 for stage 3", true, 3);
-            Goal g9 = new Goal("Goal 9","Goal 2 for stage 3", true, 3);
-            Goal g10 = new Goal("Goal 10","Goal 3 for stage 3", true, 3);
+
             mGDao.insert(g8);
             mGDao.insert(g9);
             mGDao.insert(g10);
 
+            return null;*/
             return null;
-
         }
 
     }

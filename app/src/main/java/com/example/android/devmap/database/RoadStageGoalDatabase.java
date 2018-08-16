@@ -8,6 +8,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Database(entities = {Goal.class, Stage.class, Road.class}, version = 1)
 public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract GoalDao goalDao();
@@ -18,6 +21,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
     public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
     public static Stage s2 = new Stage(3,"Stage 3", "Do efg", 0);
+    public static List<Goal> goals = new ArrayList<>();
     public static Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
     public static Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
     public static Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
@@ -77,7 +81,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
 
         @Override
         protected Void doInBackground(final Void... params) {
-           /* mRDao.deleteAll();
+            mRDao.deleteAll();
             mGDao.deleteAll();
             mDao.deleteAll();
 
@@ -104,8 +108,21 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
             mGDao.insert(g9);
             mGDao.insert(g10);
 
-            return null;*/
+            goals.add(g1);
+            goals.add(g2);
+            goals.add(g3);
+
+            goals.add(g4);
+            goals.add(g5);
+            goals.add(g6);
+            goals.add(g7);
+            goals.add(g8);
+            goals.add(g9);
+            goals.add(g10);
+
+
             return null;
+
         }
 
     }

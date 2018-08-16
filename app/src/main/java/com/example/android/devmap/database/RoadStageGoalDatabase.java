@@ -17,7 +17,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract GoalDao goalDao();
     public abstract StageDao stageDao();
     public abstract RoadDao roadDao();
-    private static RoadStageGoalDatabase INSTANCE;
+    private static RoadStageGoalDatabase INSTANCE = null;
     public static Road r = new Road("Android", "Android Dev pathway");
     public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
     public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
@@ -58,12 +58,13 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
 
     {
 
+
         @Override
         public void onOpen (@NonNull SupportSQLiteDatabase db){
             super.onOpen(db);
-            if (INSTANCE == null) {
+
                 new PopulateDbAsync(INSTANCE).execute();
-            }
+
         }
 
 
@@ -86,45 +87,45 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
 
         @Override
         protected Void doInBackground(final Void... params) {
-            mRDao.deleteAll();
-            mGDao.deleteAll();
-            mDao.deleteAll();
+            if (mRDao.getAllMaps().size() == 0) {
 
-            mRDao.insert(r);
+                mRDao.deleteAll();
+                mGDao.deleteAll();
+                mDao.deleteAll();
 
-            mDao.insert(s);
-            mDao.insert(s1);
-            mDao.insert(s2);
+                mRDao.insert(r);
 
-            mGDao.insert(g1);
-            mGDao.insert(g2);
-            mGDao.insert(g3);
-            mGDao.insert(g4);
+                mDao.insert(s);
+                mDao.insert(s1);
+                mDao.insert(s2);
 
-
-
-            mGDao.insert(g5);
-            mGDao.insert(g6);
-            mGDao.insert(g7);
+                mGDao.insert(g1);
+                mGDao.insert(g2);
+                mGDao.insert(g3);
+                mGDao.insert(g4);
 
 
+                mGDao.insert(g5);
+                mGDao.insert(g6);
+                mGDao.insert(g7);
 
-            mGDao.insert(g8);
-            mGDao.insert(g9);
-            mGDao.insert(g10);
 
-            goals.add(g1);
-            goals.add(g2);
-            goals.add(g3);
+                mGDao.insert(g8);
+                mGDao.insert(g9);
+                mGDao.insert(g10);
 
-            goals.add(g4);
-            goals.add(g5);
-            goals.add(g6);
-            goals.add(g7);
-            goals.add(g8);
-            goals.add(g9);
-            goals.add(g10);
+                goals.add(g1);
+                goals.add(g2);
+                goals.add(g3);
 
+                goals.add(g4);
+                goals.add(g5);
+                goals.add(g6);
+                goals.add(g7);
+                goals.add(g8);
+                goals.add(g9);
+                goals.add(g10);
+            }
 
             return null;
 

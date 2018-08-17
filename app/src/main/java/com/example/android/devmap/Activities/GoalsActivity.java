@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +20,20 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 import java.util.List;
 
-public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener {
+public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener, OnTaskCompleted {
     private GoalsAdapter myAdapter;
     RecyclerView myRecyclerView;
     private GoalViewModel mGoalViewModel;
     private int stageId;
+    List<Goal> lg;
+
+    @Override
+    public void onTaskCompleted(List<Goal> goalss, int in) {
+        this.lg = goalss;
+        Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);
+        Intent intent = i.putExtra("Goal", lg.get(in).getSummary());
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +68,34 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
         myRecyclerView.setAdapter(myAdapter);
     }
 
+
     
     @Override
     public void onListItemClick(int index) {
-        Intent i = new Intent(GoalsActivity.this, GoalSummaryActivity.class);
-        List<Goal> lg = mGoalViewModel.getListGoals(stageId);
-        Intent intent = i.putExtra("Goal", lg.get(index).getSummary());
-        startActivity(intent);
+
+        new QueryDBClass(this, index).execute(stageId);
+
+    }
+
+    public class QueryDBClass extends AsyncTask<Integer, Void, List<Goal>> {
+        private OnTaskCompleted listener;
+        private int ind;
+
+        public QueryDBClass(OnTaskCompleted l, int index) {
+            this.listener = l;
+            this.ind = index;
+        }
+
+        @Override
+        protected List<Goal> doInBackground(Integer... integers) {
+            return mGoalViewModel.getListGoals(integers[0]);
+
+        }
+
+        @Override
+        protected void onPostExecute(List<Goal> goals) {
+            super.onPostExecute(goals);
+            listener.onTaskCompleted(goals, ind);
+        }
     }
 }

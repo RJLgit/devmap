@@ -10,11 +10,8 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.android.devmap.R;
-
-import java.net.URI;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
@@ -33,7 +30,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             setPreferenceSummary(preference, s);
         }
         // initialise contact us button, setup listener and explicit intent
-        Preference button = (Preference)getPreferenceManager().findPreference("contactEmailLink");
+        Preference button = getPreferenceManager().findPreference("contactEmailLink");
         if (button != null) {
             button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override

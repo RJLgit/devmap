@@ -1,4 +1,4 @@
-package com.example.android.devmap.Activities;
+package com.example.android.devmap.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +11,6 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 
 public class GoalSummaryActivity extends AppCompatActivity{
-    private TextView mTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +19,7 @@ public class GoalSummaryActivity extends AppCompatActivity{
         String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
         ThemeUtils.changeTheme(this, s);
         setContentView(R.layout.activity_goal_summary);
-        mTextView = (TextView) findViewById(R.id.goals_summary_textview);
+        TextView mTextView = findViewById(R.id.goals_summary_textview);
 
         Intent i = getIntent();
         if (i.hasExtra("Goal")){

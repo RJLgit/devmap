@@ -21,7 +21,7 @@ import java.util.List;
 public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHolder> {
 
     final private ListItemClickListener mListItemClickListener;
-    private Context c;
+    private final Context c;
     private List<Goal> stageArray;
 
 
@@ -66,12 +66,12 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
 
     // define the GoalViewHolders class
     class GoalsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView goalTextView;
-        CheckBox goalCheckBox;
+        final TextView goalTextView;
+        final CheckBox goalCheckBox;
         Goal goal;
         private AsyncTask backgroundTask;
 
-        public GoalsViewHolder (final View itemView){
+        GoalsViewHolder(final View itemView){
             super(itemView);
             goalTextView = itemView.findViewById(R.id.goalNumber);
             goalCheckBox = itemView.findViewById(R.id.goalCheckBox);

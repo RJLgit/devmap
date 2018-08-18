@@ -7,9 +7,9 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 public class StageViewModel extends AndroidViewModel {
-    private StageRepository mRepository;
-    private LiveData<List<Stage>> mAllStages;
-    private List<Stage> mListStages;
+    private final StageRepository mRepository;
+    private final LiveData<List<Stage>> mAllStages;
+    private final List<Stage> mListStages;
 
     public StageViewModel(Application application) {
         super(application);

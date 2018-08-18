@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.devmap.Activities.GoalSummaryActivity">
+    tools:context="com.example.android.devmap.activities.GoalSummaryActivity">
 
     <TextView
         android:id="@+id/goals_summary_textview"

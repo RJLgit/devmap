@@ -5,7 +5,7 @@
     android:id="@+id/bckgroundC"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.RoadMapActivity">
+    tools:context=".activities.RoadMapActivity">
 
     <Button
         android:id="@+id/roadmap_button"

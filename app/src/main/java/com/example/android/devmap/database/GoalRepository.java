@@ -6,9 +6,9 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-public class GoalRepository {
-    private GoalDao mGoalDao;
-    private LiveData<List<Goal>> mAllGoals;
+class GoalRepository {
+    private final GoalDao mGoalDao;
+    private final LiveData<List<Goal>> mAllGoals;
 
     GoalRepository(Application application){
         RoadStageGoalDatabase db = RoadStageGoalDatabase.getDatabase(application);
@@ -27,7 +27,7 @@ public class GoalRepository {
     public List<Goal> getListGoals(int i) { return mGoalDao.getListGoals(i); }
 
     private static class insertAsyncTaskGoal extends AsyncTask<Goal, Void, Void> {
-        private GoalDao mAsyncTaskDao;
+        private final GoalDao mAsyncTaskDao;
 
         insertAsyncTaskGoal(GoalDao dao) { mAsyncTaskDao = dao; }
 

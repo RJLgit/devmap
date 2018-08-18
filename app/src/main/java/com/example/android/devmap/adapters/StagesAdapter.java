@@ -1,7 +1,6 @@
 package com.example.android.devmap.adapters;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,7 +18,7 @@ import java.util.List;
 
 public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesViewHolder> {
     final private ListItemClickListener mListItemClickListener;
-    private Context c;
+    private final Context c;
     private List<Stage> stageDataList;
     private List<List<Goal>> mGoalsList;
     private static final String TAG = "StagesAdapter";
@@ -42,9 +41,8 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutForListItem, parent, false);
-        StagesViewHolder viewHolder = new StagesViewHolder(view);
 
-        return viewHolder;
+        return new StagesViewHolder(view);
     }
 
     @Override
@@ -70,14 +68,14 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
         else return 0;
     }
 
-    public List<Goal> getGoalProgress(List<List<Goal>> stagesList, int position) {
+    private List<Goal> getGoalProgress(List<List<Goal>> stagesList, int position) {
         List<Goal> listGoals = new ArrayList<>(stagesList.get(position));
         Log.d(TAG, "getGoalProgress: ListGoals = " +listGoals);
         return listGoals;
     }
 
     // takes a list of goals and returns one of 3 strings denoting progression
-    public String getInnerGoalProgess(List<Goal> goalList){
+    private String getInnerGoalProgess(List<Goal> goalList){
         String done = "done";
         String inProgress = "in progress";
         String notStarted = "not started";
@@ -107,13 +105,13 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
 
     // Define the StagesViewHolder class
     class StagesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView stageTextView;
-        TextView stageProgressBox;
+        final TextView stageTextView;
+        final TextView stageProgressBox;
 
-        public StagesViewHolder(final View itemView) {
+        StagesViewHolder(final View itemView) {
             super(itemView);
-            stageTextView = (TextView) itemView.findViewById(R.id.stageNumber);
-            stageProgressBox = (TextView) itemView.findViewById(R.id.stageProgressTextView);
+            stageTextView = itemView.findViewById(R.id.stageNumber);
+            stageProgressBox = itemView.findViewById(R.id.stageProgressTextView);
             itemView.setOnClickListener(this);
         }
 

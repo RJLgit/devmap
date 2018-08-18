@@ -1,4 +1,4 @@
-package com.example.android.devmap.Activities;
+package com.example.android.devmap.activities;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -22,10 +22,10 @@ import java.util.List;
 
 public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.ListItemClickListener, OnTaskCompleted {
     private GoalsAdapter myAdapter;
-    RecyclerView myRecyclerView;
+    private RecyclerView myRecyclerView;
     private GoalViewModel mGoalViewModel;
     private int stageId;
-    List<Goal> lg;
+    private List<Goal> lg;
 
     @Override
     public void onTaskCompleted(List<Goal> goalss, int in) {
@@ -77,11 +77,11 @@ public class GoalsActivity extends AppCompatActivity implements GoalsAdapter.Lis
 
     }
 
-    public class QueryDBClass extends AsyncTask<Integer, Void, List<Goal>> {
-        private OnTaskCompleted listener;
-        private int ind;
+    class QueryDBClass extends AsyncTask<Integer, Void, List<Goal>> {
+        private final OnTaskCompleted listener;
+        private final int ind;
 
-        public QueryDBClass(OnTaskCompleted l, int index) {
+        QueryDBClass(OnTaskCompleted l, int index) {
             this.listener = l;
             this.ind = index;
         }

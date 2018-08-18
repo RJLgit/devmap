@@ -18,21 +18,21 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract StageDao stageDao();
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
-    public static Road r = new Road("Android", "Android Dev pathway");
-    public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
-    public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
-    public static Stage s2 = new Stage(3,"Stage 3", "Do efg", 0);
-    public static List<Goal> goals = new ArrayList<>();
-    public static Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
-    public static Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
-    public static Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
-    public static Goal g4 = new Goal("Goal 4","Goal 4 for stage 1", false, 1);
-    public static Goal g5 = new Goal("Goal 5","Goal 1 for stage 2", true, 2);
-    public static Goal g6 = new Goal("Goal 6","Goal 2 for stage 2", true, 2);
-    public static Goal g7 = new Goal("Goal 7","Goal 3 for stage 2", false, 2);
-    public static Goal g8 = new Goal("Goal 8","Goal 1 for stage 3", true, 3);
-    public static Goal g9 = new Goal("Goal 9","Goal 2 for stage 3", true, 3);
-    public static Goal g10 = new Goal("Goal 10","Goal 3 for stage 3", true, 3);
+    private static final Road r = new Road("Android", "Android Dev pathway");
+    private static final Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
+    private static final Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
+    private static final Stage s2 = new Stage(3,"Stage 3", "Do efg", 0);
+    private static final List<Goal> goals = new ArrayList<>();
+    private static final Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
+    private static final Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
+    private static final Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
+    private static final Goal g4 = new Goal("Goal 4","Goal 4 for stage 1", false, 1);
+    private static final Goal g5 = new Goal("Goal 5","Goal 1 for stage 2", true, 2);
+    private static final Goal g6 = new Goal("Goal 6","Goal 2 for stage 2", true, 2);
+    private static final Goal g7 = new Goal("Goal 7","Goal 3 for stage 2", false, 2);
+    private static final Goal g8 = new Goal("Goal 8","Goal 1 for stage 3", true, 3);
+    private static final Goal g9 = new Goal("Goal 9","Goal 2 for stage 3", true, 3);
+    private static final Goal g10 = new Goal("Goal 10","Goal 3 for stage 3", true, 3);
 
     public static RoadStageGoalDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -56,7 +56,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
        INSTANCE.goalDao().update(goal);
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()
 
     {
 
@@ -136,7 +136,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     }
 
 
-    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 
@@ -144,7 +144,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
         }
     };
 
-    static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
             database.execSQL(null);

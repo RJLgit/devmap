@@ -3,7 +3,6 @@ package com.example.android.devmap.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 @Entity(tableName = "road_table")
 public class Road {
@@ -11,10 +10,10 @@ public class Road {
     private int id;
 
     @ColumnInfo(name="name")
-    private String mName;
+    private final String mName;
 
     @ColumnInfo(name="summary")
-    private String mSummary;
+    private final String mSummary;
 
     public Road(String mName, String mSummary){
         this.mName = mName;

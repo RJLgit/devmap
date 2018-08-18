@@ -1,9 +1,8 @@
-package com.example.android.devmap.Activities;
+package com.example.android.devmap.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,7 +17,7 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 
 public class RoadMapActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-    Button roadmapButton;
+    private Button roadmapButton;
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -34,7 +33,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         super.onCreate(savedInstanceState);
         setUpSharedPreferences();
         setContentView(R.layout.activity_main);
-        roadmapButton = (Button) findViewById(R.id.roadmap_button);
+        roadmapButton = findViewById(R.id.roadmap_button);
 
         roadmapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +54,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         setUpSharedPreferences();
         super.onResume();
         setContentView(R.layout.activity_main);
-        roadmapButton = (Button) findViewById(R.id.roadmap_button);
+        roadmapButton = findViewById(R.id.roadmap_button);
 
         roadmapButton.setOnClickListener(new View.OnClickListener() {
             @Override

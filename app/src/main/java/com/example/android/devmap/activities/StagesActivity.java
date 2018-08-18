@@ -1,7 +1,6 @@
-package com.example.android.devmap.Activities;
+package com.example.android.devmap.activities;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +25,7 @@ import java.util.List;
 
 public class StagesActivity extends AppCompatActivity implements StagesAdapter.ListItemClickListener {
     private StagesAdapter myAdapter;
-    RecyclerView myRecyclerView;
+    private RecyclerView myRecyclerView;
     private StageViewModel mStageViewModel;
     private GoalViewModel mGoalViewModel;
     private static final String TAG = "StagesActivity";
@@ -71,7 +70,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
         startActivity(intent);
     }
 
-    public List<List<Goal>> getListGoal() {
+    private List<List<Goal>> getListGoal() {
         List<Stage> listStage = mStageViewModel.getListStages();
         List<List<Goal>> listOfLists = new ArrayList<>();
         for (Stage stage : listStage) {

@@ -1,11 +1,8 @@
 package com.example.android.devmap.database;
 
-import android.app.Application;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
-import android.net.Uri;
-import android.support.annotation.NonNull;
 
 @Entity(tableName = "goal_table")
 public class Goal {
@@ -13,10 +10,10 @@ public class Goal {
     private int id;
 
     @ColumnInfo(name="name")
-    private String mName;
+    private final String mName;
 
     @ColumnInfo(name="summary")
-    private String mSummary;
+    private final String mSummary;
 
 
     @ColumnInfo(name="progress")
@@ -26,7 +23,7 @@ public class Goal {
     private String mWebLink;
 
     @ColumnInfo(name="stage_map_reference")
-    private int mStageReference;
+    private final int mStageReference;
 
     public Goal(String mName, String mSummary, Boolean mProgress, int mStageReference){
         this.mName = mName;

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/LightTheme">
-        <activity android:name=".Activities.RoadMapActivity"
+        <activity android:name=".activities.RoadMapActivity"
             android:launchMode="singleTop"
             >
             <intent-filter>
@@ -19,22 +19,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.StagesActivity"
+            android:name=".activities.StagesActivity"
             android:label="@string/road_map_activity_label" />
         <activity
-            android:name=".Activities.GoalsActivity"
+            android:name=".activities.GoalsActivity"
             android:label="@string/goals_activity_label" />
         <activity
-            android:name=".Activities.GoalSummaryActivity"
+            android:name=".activities.GoalSummaryActivity"
             android:label="@string/goals_summary_activity" />
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/action_settings"
-            android:parentActivityName=".Activities.RoadMapActivity"
+            android:parentActivityName=".activities.RoadMapActivity"
             >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.RoadMapActivity"/>
+                android:value=".activities.RoadMapActivity"/>
         </activity>
     </application>
 

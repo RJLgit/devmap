@@ -8,8 +8,8 @@ import android.support.annotation.NonNull;
 import java.util.List;
 
 public class GoalViewModel extends AndroidViewModel{
-    private GoalRepository mRepository;
-    private LiveData<List<Goal>> mAllGoals;
+    private final GoalRepository mRepository;
+    private final LiveData<List<Goal>> mAllGoals;
 
 
     public GoalViewModel(@NonNull Application application) {

@@ -6,16 +6,16 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-public class StageRepository {
-    private StageDao mStageDao;
-    private LiveData<List<Stage>> mAllStages;
-    private List<Stage> mListStages;
+class StageRepository {
+    private final StageDao mStageDao;
+    private final LiveData<List<Stage>> mAllStages;
+    private final List<Stage> mListStages;
 
     StageRepository(Application application) {
         RoadStageGoalDatabase db = RoadStageGoalDatabase.getDatabase(application);
         mStageDao = db.stageDao();
         mAllStages = mStageDao.getAllStages();
-        mListStages = mStageDao.getListStages();;
+        mListStages = mStageDao.getListStages();
 
     }
 
@@ -30,7 +30,7 @@ public class StageRepository {
 
     private static class insertAsyncTaskStage extends AsyncTask<Stage, Void, Void> {
 
-        private StageDao mAsyncTaskDao;
+        private final StageDao mAsyncTaskDao;
 
         insertAsyncTaskStage(StageDao dao) {
             mAsyncTaskDao = dao;

@@ -18,7 +18,11 @@ public interface StageDao {
     @Query("SELECT * from stage_table ORDER BY id ASC")
     LiveData<List<Stage>> getAllStages();
 
+    @Query("SELECT * from stage_table ORDER BY id ASC")
+    List<Stage> getListStages();
+
     @Query("SELECT * from stage_table WHERE road_map_reference = :id ORDER BY id ASC")
     LiveData<List<Stage>> getMapStages(int id);
+
 
 }

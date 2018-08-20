@@ -44,7 +44,7 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     @Override
     public void onBindViewHolder(@NonNull StagesAdapter.StagesViewHolder holder, int position) {
         // bind data when it has been created in its own class.
-        holder.bind(stageDataList.get(position).getName(), "ole");
+        holder.bind(stageDataList.get(position).getName(), stageDataList.get(position).getProgress());
     }
 
     public void setStages(List<Stage> stages) {

@@ -19,10 +19,11 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
     public static Road r = new Road("Android", "Android Dev pathway");
-    public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0);
-    public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0);
-    public static Stage s2 = new Stage(3,"Stage 3", "Do efg", 0);
+    public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0, "in progress");
+    public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0, "in progress");
+    public static Stage s2 = new Stage(3,"Stage 3", "Do efg", 0, "completed");
     public static List<Goal> goals = new ArrayList<>();
+    public static List<Stage> stages = new ArrayList<>();
     public static Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
     public static Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
     public static Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
@@ -54,6 +55,32 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
 
     public static void updateGoal(Goal goal) {
        INSTANCE.goalDao().update(goal);
+       int stageId = goal.getStageReference();
+       Stage res = s;
+       for (Stage ss: stages) {
+           if (ss.getId() == stageId) {
+               res = ss;
+           }
+       }
+       int result = 0;
+       String prog = "in progress";
+       List<Goal> lg = INSTANCE.goalDao().getListGoals(stageId);
+       for (Goal g: lg) {
+           if (g.getProgress()) {
+               result = result + 1;
+           }
+       }
+       if (result == 0) {
+           prog = "not started";
+       } else if (result == lg.size()) {
+           prog = "completed";
+       }
+
+       res.setProgress(prog);
+
+       if (res != null) {
+           INSTANCE.stageDao().update(res);
+       }
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()
@@ -127,6 +154,10 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 goals.add(g8);
                 goals.add(g9);
                 goals.add(g10);
+
+                stages.add(s);
+                stages.add(s1);
+                stages.add(s2);
             }
 
             return null;

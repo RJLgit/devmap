@@ -41,7 +41,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
 
-                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback)
+                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback).allowMainThreadQueries()
                             .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .build();
 
@@ -52,19 +52,20 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     }
 
 
-
-    public static void updateGoal(Goal goal) {
-       INSTANCE.goalDao().update(goal);
+// It doesnt assign the correct stage on second load. Probably because the stage references get messed up. How does the update db method work in sql?
+    public static void updateGoal(Goal goal, RoadStageGoalDatabase db) {
+       db.goalDao().update(goal);
+       // db.goalDao().updateGoal();
        int stageId = goal.getStageReference();
-       Stage res = s;
-       for (Stage ss: stages) {
+       //Stage res = null;
+     /*  for (Stage ss: stages) {
            if (ss.getId() == stageId) {
                res = ss;
            }
-       }
+       }*/
        int result = 0;
        String prog = "in progress";
-       List<Goal> lg = INSTANCE.goalDao().getListGoals(stageId);
+       List<Goal> lg = db.goalDao().getListGoals(stageId);
        for (Goal g: lg) {
            if (g.getProgress()) {
                result = result + 1;
@@ -76,11 +77,13 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
            prog = "completed";
        }
 
-       res.setProgress(prog);
+      // if (res != null) {
+           //res.setProgress(prog);
+      // }
 
-       if (res != null) {
-           INSTANCE.stageDao().update(res);
-       }
+      // if (res != null) {
+           db.stageDao().updateStage(prog, stageId);
+      // }
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()

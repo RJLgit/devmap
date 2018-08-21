@@ -22,6 +22,9 @@ public interface StageDao {
     @Query("SELECT * from stage_table WHERE road_map_reference = :id ORDER BY id ASC")
     LiveData<List<Stage>> getMapStages(int id);
 
+    @Query("UPDATE stage_table SET progress = :progress WHERE id = :id")
+    void updateStage(String progress, int id);
+
     @Update
     void update(Stage stage);
 

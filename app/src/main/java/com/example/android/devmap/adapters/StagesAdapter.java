@@ -1,22 +1,28 @@
 package com.example.android.devmap.adapters;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.devmap.R;
+import com.example.android.devmap.database.Goal;
 import com.example.android.devmap.database.Stage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesViewHolder> {
     final private ListItemClickListener mListItemClickListener;
     private Context c;
     private List<Stage> stageDataList;
+    private List<List<Goal>> mGoalsList;
+    private static final String TAG = "StagesAdapter";
 
     public StagesAdapter(Context context, ListItemClickListener listItemClickListener) {
         c = context;
@@ -44,11 +50,19 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
     @Override
     public void onBindViewHolder(@NonNull StagesAdapter.StagesViewHolder holder, int position) {
         // bind data when it has been created in its own class.
+<<<<<<< HEAD
         holder.bind(stageDataList.get(position).getName(), stageDataList.get(position).getProgress());
+=======
+        holder.bind(stageDataList.get(position).getName(), getInnerGoalProgess(getGoalProgress(mGoalsList, position)));
+>>>>>>> origin/master
     }
 
     public void setStages(List<Stage> stages) {
         stageDataList = stages;
+        notifyDataSetChanged();
+    }
+    public void setListOfLists(List<List<Goal>> goalsList){
+        mGoalsList = goalsList;
         notifyDataSetChanged();
     }
 
@@ -59,6 +73,41 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
             return stageDataList.size();
         else return 0;
     }
+
+    public List<Goal> getGoalProgress(List<List<Goal>> stagesList, int position) {
+        List<Goal> listGoals = new ArrayList<>(stagesList.get(position));
+        Log.d(TAG, "getGoalProgress: ListGoals = " +listGoals);
+        return listGoals;
+    }
+
+    // takes a list of goals and returns one of 3 strings denoting progression
+    public String getInnerGoalProgess(List<Goal> goalList){
+        String done = "done";
+        String inProgress = "in progress";
+        String notStarted = "not started";
+        int progressTracker = goalList.size();
+        Log.d(TAG, "getInnerGoalProgess: size =  "+progressTracker);
+        for (int j = 0; j < goalList.size(); j++) {
+            if (goalList.get(j).getProgress()) {
+                progressTracker--;
+                Log.d(TAG, "getInnerGoalProgess: progress tracker now at " + progressTracker);
+            }
+        }
+        Log.d(TAG, "getInnerGoalProgess: " + progressTracker);
+        if (progressTracker == 0) {
+            return done;
+        }
+        else if (progressTracker == goalList.size()) {
+            return notStarted;
+        }
+        else {
+            return inProgress;
+        }
+    }
+
+
+
+
 
     // Define the StagesViewHolder class
     class StagesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -82,6 +131,7 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
         public void onClick(View view) {
             int stageIdClicked = stageDataList.get(getAdapterPosition()).getId();
             mListItemClickListener.onListItemClick(stageIdClicked);
+
         }
     }
 }

@@ -9,17 +9,20 @@ import java.util.List;
 public class StageRepository {
     private StageDao mStageDao;
     private LiveData<List<Stage>> mAllStages;
+    private List<Stage> mListStages;
 
     StageRepository(Application application) {
         RoadStageGoalDatabase db = RoadStageGoalDatabase.getDatabase(application);
         mStageDao = db.stageDao();
         mAllStages = mStageDao.getAllStages();
+        mListStages = mStageDao.getListStages();;
 
     }
 
     LiveData<List<Stage>> getAllStages() {
         return mAllStages;
     }
+    List<Stage> getListStages() { return mListStages; }
 
     public void insert (Stage stage) {
         new insertAsyncTaskStage(mStageDao).execute(stage);

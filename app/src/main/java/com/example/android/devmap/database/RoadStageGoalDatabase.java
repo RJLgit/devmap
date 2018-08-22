@@ -18,22 +18,34 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract StageDao stageDao();
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
-    public static Road r = new Road("Android", "Android Dev pathway");
-    public static Stage s = new Stage(1,"Stage 1", "Do xyz", 0, "in progress");
-    public static Stage s1 = new Stage(2,"Stage 2", "Do abc", 0, "in progress");
-    public static Stage s2 = new Stage(3,"Stage 3", "Do efg", 0, "completed");
+    public static Road r = new Road("Front-End Web Development: Basics", "Learn the basics of front-end web development");
+    public static Stage s = new Stage(1,"HTML", "Basics of HTML", 0, "not started");
+    public static Stage s1 = new Stage(2,"CSS", "Basics of CSS", 0, "not started");
+    public static Stage s2 = new Stage(3,"JavaScript", "Basics of JavaScript", 0, "not started");
+    public static Stage s3 = new Stage(4,"Test yourself", "Test your knowledge", 0, "not started");
+
     public static List<Goal> goals = new ArrayList<>();
     public static List<Stage> stages = new ArrayList<>();
-    public static Goal g1 = new Goal("Goal 1","Goal 1 for stage 1", true, 1);
-    public static Goal g2 = new Goal("Goal 2","Goal 2 for stage 1", false, 1);
-    public static Goal g3 = new Goal("Goal 3","Goal 3 for stage 1", true, 1);
-    public static Goal g4 = new Goal("Goal 4","Goal 4 for stage 1", false, 1);
-    public static Goal g5 = new Goal("Goal 5","Goal 1 for stage 2", true, 2);
-    public static Goal g6 = new Goal("Goal 6","Goal 2 for stage 2", true, 2);
-    public static Goal g7 = new Goal("Goal 7","Goal 3 for stage 2", false, 2);
-    public static Goal g8 = new Goal("Goal 8","Goal 1 for stage 3", true, 3);
-    public static Goal g9 = new Goal("Goal 9","Goal 2 for stage 3", true, 3);
-    public static Goal g10 = new Goal("Goal 10","Goal 3 for stage 3", true, 3);
+    public static Goal g1 = new Goal("Goal 1","Learn the basics and how to write semantic HTML", false, 1);
+    public static Goal g2 = new Goal("Goal 2","Dividing page into sections and how to structure the DOM properly", false, 1);
+    public static Goal g3 = new Goal("Goal 3","Make at least 5 HTML pages - focus on structure", false, 1);
+
+    public static Goal g4 = new Goal("Goal 4","Learn the basics of CSS", false, 2);
+    public static Goal g5 = new Goal("Goal 5","Learn how to use Grid and FlexBox", false, 2);
+    public static Goal g6 = new Goal("Goal 6","Media Queries and Responsive websites", false, 2);
+    public static Goal g7 = new Goal("Goal 7","Style the HTML Pages that you made in the last step", false, 2);
+
+    public static Goal g8 = new Goal("Goal 8","Learn the syntax and basic constructs", false, 3);
+    public static Goal g9 = new Goal("Goal 9","Learn how to manipulate the DOM", false, 3);
+    public static Goal g10 = new Goal("Goal 10","Understand the concepts such as hoisting, event bubbling, prototype etc", false, 3);
+    public static Goal g11 = new Goal("Goal 11","Learn Ajax (XHR)", false, 3);
+    public static Goal g12 = new Goal("Goal 12","Learn ES6+ new features and writing modular JavaScript", false, 3);
+
+    public static Goal g13 = new Goal("Goal 13","Make some responsive website and add some interactivity with JavaScript", false, 4);
+    public static Goal g14 = new Goal("Goal 14","Search projects on github and open a few PRs", false, 4);
+    public static Goal g15 = new Goal("Goal 15","Enhance the UI, make any demo pages responsive or improve the design", false, 4);
+    public static Goal g16 = new Goal("Goal 16","Look for any open issues that you can solve", false, 4);
+    public static Goal g17 = new Goal("Goal 17","Refactor any of the code or implement the best practices that you learn on the way", false, 4);
 
     public static RoadStageGoalDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -41,7 +53,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
 
-                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback).allowMainThreadQueries()
+                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback)
                             .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .build();
 
@@ -124,43 +136,60 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 mRDao.deleteAll();
                 mGDao.deleteAll();
                 mDao.deleteAll();
-
+                // road map
                 mRDao.insert(r);
-
+                // stages
                 mDao.insert(s);
                 mDao.insert(s1);
                 mDao.insert(s2);
-
+                mDao.insert(s3);
+                // road 0 stage 0
                 mGDao.insert(g1);
                 mGDao.insert(g2);
                 mGDao.insert(g3);
+                // road 0 stage 1
                 mGDao.insert(g4);
-
-
                 mGDao.insert(g5);
                 mGDao.insert(g6);
                 mGDao.insert(g7);
-
-
+                // road 0 stage 2
                 mGDao.insert(g8);
                 mGDao.insert(g9);
                 mGDao.insert(g10);
-
+                mGDao.insert(g11);
+                mGDao.insert(g12);
+                // road 0 stage 3
+                mGDao.insert(g13);
+                mGDao.insert(g14);
+                mGDao.insert(g15);
+                mGDao.insert(g16);
+                mGDao.insert(g17);
+                // add road 0 stage 0 goals
                 goals.add(g1);
                 goals.add(g2);
                 goals.add(g3);
-
+                // add road 0 stage 1 goals
                 goals.add(g4);
                 goals.add(g5);
                 goals.add(g6);
                 goals.add(g7);
+                // add road 0 stage 2 goals
                 goals.add(g8);
                 goals.add(g9);
                 goals.add(g10);
-
+                goals.add(g11);
+                goals.add(g12);
+                // add road 0 stage 3 goals
+                goals.add(g13);
+                goals.add(g14);
+                goals.add(g15);
+                goals.add(g16);
+                goals.add(g17);
+                // add stages
                 stages.add(s);
                 stages.add(s1);
                 stages.add(s2);
+                stages.add(s3);
             }
 
             return null;

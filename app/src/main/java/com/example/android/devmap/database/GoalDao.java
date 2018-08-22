@@ -24,6 +24,11 @@ public interface GoalDao {
     @Query("SELECT * from goal_table WHERE stage_map_reference = :id ORDER BY id ASC")
     List<Goal> getListGoals(int id);
 
+
+    //check id and column info. May have to manually assign id
+    @Query("UPDATE goal_table SET progress = :mProgress WHERE id = :id")
+    void updateGoal(Boolean mProgress, int id);
+
     @Update
     void update(Goal g);
 

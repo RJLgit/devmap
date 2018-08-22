@@ -53,7 +53,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
 
-                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback).allowMainThreadQueries()
+                            RoadStageGoalDatabase.class, "roadMap_database").addCallback(sRoomDatabaseCallback)
                             .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                             .build();
 

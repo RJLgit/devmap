@@ -9,20 +9,16 @@ import java.util.List;
 public class StageViewModel extends AndroidViewModel {
     private StageRepository mRepository;
     private LiveData<List<Stage>> mAllStages;
-    private List<Stage> mListStages;
 
     public StageViewModel(Application application) {
         super(application);
         mRepository = new StageRepository((application));
         mAllStages = mRepository.getAllStages();
-        mListStages = mRepository.getListStages();
     }
 
     public LiveData<List<Stage>> getmAllStages() {
         return mAllStages;
     }
-
-    public List<Stage> getListStages() {return mListStages; }
 
     public void insert(Stage stage) { mRepository.insert(stage); }
 }

@@ -80,7 +80,7 @@ public class GoalsAdapter extends RecyclerView.Adapter<GoalsAdapter.GoalsViewHol
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     goal.setProgress(b);
-                    new UpdateDbClass().execute(goal);
+                    new UpdateDbClass(c).execute(goal);
 
                 }
             });

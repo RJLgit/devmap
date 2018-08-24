@@ -45,12 +45,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
-        /*roadMapData = new RoadMapData();
-        if (roadMapData.getStages() != null) {
-            if (roadMapData.getStages().size() == 0) {
-                roadMapData.populateData();
-            }
-        }*/
+
         myAdapter = new StagesAdapter(this, this);
 
         myRecyclerView.setAdapter(myAdapter);

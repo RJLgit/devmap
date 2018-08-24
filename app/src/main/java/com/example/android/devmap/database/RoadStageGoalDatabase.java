@@ -18,7 +18,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract StageDao stageDao();
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
-    public static Road r = new Road("Front-End Web Development: Basics", "Learn the basics of front-end web development");
+    public static Road r = new Road(0,"Front-End Web Development: Basics", "Learn the basics of front-end web development");
     public static Stage s = new Stage(1,"HTML", "Basics of HTML", 0, "not started");
     public static Stage s1 = new Stage(2,"CSS", "Basics of CSS", 0, "not started");
     public static Stage s2 = new Stage(3,"JavaScript", "Basics of JavaScript", 0, "not started");

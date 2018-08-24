@@ -1,24 +1,35 @@
 package com.example.android.devmap.Activities;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.constraint.ConstraintLayout;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.android.devmap.R;
+import com.example.android.devmap.adapters.RoadAdapter;
+import com.example.android.devmap.database.Road;
+import com.example.android.devmap.database.RoadViewModel;
 import com.example.android.devmap.settings.SettingsActivity;
 import com.example.android.devmap.settings.ThemeUtils;
 
+import java.util.List;
+
 
 public class RoadMapActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-    Button roadmapButton;
+    RecyclerView mRecyclerView;
+    private static final String TAG = "RoadMapActivity";
+    private RoadViewModel mRoadViewModel;
+    private RoadAdapter mAdapter;
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -33,18 +44,21 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setUpSharedPreferences();
-        setContentView(R.layout.activity_main);
-        roadmapButton = (Button) findViewById(R.id.roadmap_button);
 
-        roadmapButton.setOnClickListener(new View.OnClickListener() {
+        mRoadViewModel = ViewModelProviders.of(this).get(RoadViewModel.class);
+        mRoadViewModel.getmALlMaps().observe(this, new Observer<List<Road>>() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(RoadMapActivity.this, StagesActivity.class);
-
-                startActivity(i);
+            public void onChanged(@Nullable List<Road> roads) {
+                mAdapter.setRoads (roads);
             }
         });
-
+        setContentView(R.layout.activity_main);
+        mRecyclerView = findViewById(R.id.roadmap_recycler_view);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setHasFixedSize(true);
+        mAdapter = new RoadAdapter();
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
@@ -55,19 +69,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         setUpSharedPreferences();
         super.onResume();
         setContentView(R.layout.activity_main);
-        roadmapButton = (Button) findViewById(R.id.roadmap_button);
-
-        roadmapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(RoadMapActivity.this, StagesActivity.class);
-
-                startActivity(i);
             }
-        });
-
-
-    }
 
     @Override
     protected void onDestroy() {

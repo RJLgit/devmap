@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 @Entity(tableName = "road_table")
 public class Road {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     private int id;
 
     @ColumnInfo(name="name")
@@ -16,7 +16,8 @@ public class Road {
     @ColumnInfo(name="summary")
     private String mSummary;
 
-    public Road(String mName, String mSummary){
+    public Road(int id, String mName, String mSummary){
+        this.id = id;
         this.mName = mName;
         this.mSummary = mSummary;
     }

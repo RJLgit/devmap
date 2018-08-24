@@ -16,6 +16,8 @@ public interface RoadDao {
     void deleteAll();
 
     @Query("SELECT * from road_table ORDER BY id ASC")
-    List<Road> getAllMaps();
+    LiveData<List<Road>> getLiveAllMaps();
 
+    @Query("SELECT * from road_table ORDER BY id ASC")
+    List<Road> getAllMaps();
 }

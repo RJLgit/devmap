@@ -1,6 +1,5 @@
 package com.example.android.devmap.Activities;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -24,8 +23,7 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 import java.util.List;
 
-
-public class RoadMapActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class Main2Activity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     RecyclerView mRecyclerView;
     private static final String TAG = "RoadMapActivity";
     private RoadViewModel mRoadViewModel;
@@ -45,6 +43,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         super.onCreate(savedInstanceState);
         setUpSharedPreferences();
 
+
         mRoadViewModel = ViewModelProviders.of(this).get(RoadViewModel.class);
         mRoadViewModel.getmALlMaps().observe(this, new Observer<List<Road>>() {
             @Override
@@ -52,7 +51,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
                 mAdapter.setRoads (roads);
             }
         });
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         mRecyclerView = findViewById(R.id.roadmap_recycler_view);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -64,7 +63,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
 
 
 
-    @Override
+ /*   @Override
     protected void onResume() {
         setUpSharedPreferences();
         super.onResume();
@@ -82,7 +81,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         super.onPause();
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +95,7 @@ public class RoadMapActivity extends AppCompatActivity implements SharedPreferen
         int id = item.getItemId();
         if(id == R.id.action_settings){
             Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
-                    startActivity(startSettingsActivity);
+            startActivity(startSettingsActivity);
             return true;
         }
         return super.onOptionsItemSelected(item);

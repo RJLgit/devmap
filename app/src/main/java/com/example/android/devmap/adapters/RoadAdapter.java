@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -18,6 +19,9 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
     private List<Road> mRoadList;
     private Context mContext;
 
+    public RoadAdapter() {
+        super();
+    }
 
     public void setRoads(List<Road> roads){
         mRoadList = roads;
@@ -27,7 +31,7 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
     @NonNull
     @Override
     public RoadAdapter.RoadViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.roads_recycler_view_item, parent, false);
         RoadViewHolder rh = new RoadViewHolder(v);
         return rh;
@@ -41,15 +45,17 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
 
     @Override
     public int getItemCount() {
-        if (mRoadList != null)
-            return mRoadList.size();
-        else return 0;
+//        int res = 11;
+//        return res;
+if (mRoadList != null)
+return mRoadList.size();
+ else return 0;
     }
 
-    public static class RoadViewHolder extends RecyclerView.ViewHolder {
+    public class RoadViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
 
-        public RoadViewHolder(TextView v) {
+        public RoadViewHolder(View v) {
             super(v);
             mTextView = v.findViewById(R.id.road_name_textview);
         }

@@ -21,12 +21,12 @@
         <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/action_settings"
-            android:parentActivityName=".Activities.Main2Activity">
+            android:parentActivityName=".Activities.RoadActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Activities.Main2Activity" />
+                android:value=".Activities.RoadActivity" />
         </activity>
-        <activity android:name=".Activities.Main2Activity">
+        <activity android:name=".Activities.RoadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

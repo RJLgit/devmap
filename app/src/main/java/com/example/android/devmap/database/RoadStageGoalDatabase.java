@@ -19,6 +19,11 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
     public static Road r = new Road(0,"Front-End Web Development: Basics", "Learn the basics of front-end web development");
+    public static Road r1 = new Road(1,"Back-end Web Development: Basics", "Learn the basics of back-end web development");
+    public static Road r2 = new Road(2,"Game Development: Basics", "Learn the basics of game development");
+    public static Road r3 = new Road(3,"Android Development: Basics", "Learn the basics of Android development");
+
+    // RoadMap 0
     public static Stage s = new Stage(1,"HTML", "Basics of HTML", 0, "not started");
     public static Stage s1 = new Stage(2,"CSS", "Basics of CSS", 0, "not started");
     public static Stage s2 = new Stage(3,"JavaScript", "Basics of JavaScript", 0, "not started");
@@ -46,6 +51,12 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public static Goal g15 = new Goal("Goal 15","Enhance the UI, make any demo pages responsive or improve the design", false, 4);
     public static Goal g16 = new Goal("Goal 16","Look for any open issues that you can solve", false, 4);
     public static Goal g17 = new Goal("Goal 17","Refactor any of the code or implement the best practices that you learn on the way", false, 4);
+
+    // RoadMap 1
+
+    // RoadMap 2
+
+    // RoadMap 3
 
     public static RoadStageGoalDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -138,6 +149,9 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 mDao.deleteAll();
                 // road map
                 mRDao.insert(r);
+                mRDao.insert(r1);
+                mRDao.insert(r2);
+                mRDao.insert(r3);
                 // stages
                 mDao.insert(s);
                 mDao.insert(s1);

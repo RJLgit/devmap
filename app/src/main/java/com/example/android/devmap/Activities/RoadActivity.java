@@ -23,7 +23,7 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class RoadActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     RecyclerView mRecyclerView;
     private static final String TAG = "RoadMapActivity";
     private RoadViewModel mRoadViewModel;

@@ -3,6 +3,7 @@ package com.example.android.devmap.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,16 @@ import java.util.List;
 public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder>{
     private List<Road> mRoadList;
     private Context mContext;
+    final private ListItemClickListener mListItemClickListener;
+    private static final String TAG = "RoadAdapter";
 
-    public RoadAdapter() {
-        super();
+    public RoadAdapter(ListItemClickListener listItemClickListener) {
+        mListItemClickListener= listItemClickListener;
+    }
+
+    // interface for itemclicklistener
+    public interface ListItemClickListener {
+        void onListItemCLick (int index);
     }
 
     public void setRoads(List<Road> roads){
@@ -45,23 +53,31 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
 
     @Override
     public int getItemCount() {
-//        int res = 11;
-//        return res;
-if (mRoadList != null)
-return mRoadList.size();
- else return 0;
+        if (mRoadList != null)
+        return mRoadList.size();
+        else return 0;
     }
 
-    public class RoadViewHolder extends RecyclerView.ViewHolder {
+    public class RoadViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mTextView;
 
         public RoadViewHolder(View v) {
             super(v);
             mTextView = v.findViewById(R.id.road_name_textview);
+            v.setOnClickListener(this);
         }
 
         void bind (String s) {
             mTextView.setText(s);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            Log.d(TAG, "onClick: clicked position is " + clickedPosition);
+            int roadIdClicked = mRoadList.get(clickedPosition).getId();
+            Log.d(TAG, "onClick: road id clicked is " +roadIdClicked );
+            mListItemClickListener.onListItemCLick(roadIdClicked);
         }
     }
 }

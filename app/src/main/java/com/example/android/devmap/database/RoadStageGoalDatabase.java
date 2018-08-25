@@ -28,6 +28,12 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public static Stage s1 = new Stage(2,"CSS", "Basics of CSS", 0, "not started");
     public static Stage s2 = new Stage(3,"JavaScript", "Basics of JavaScript", 0, "not started");
     public static Stage s3 = new Stage(4,"Test yourself", "Test your knowledge", 0, "not started");
+    // RoadMap 1
+    public static Stage s4 = new Stage(5,"HTML", "Basics of HTML", 1, "not started");
+    public static Stage s5 = new Stage(6,"CSS", "Basics of CSS", 1, "not started");
+    public static Stage s6 = new Stage(7,"JavaScript", "Basics of JavaScript", 1, "not started");
+    public static Stage s7 = new Stage(8,"Test yourself", "Test your knowledge", 1, "not started");
+
 
     public static List<Goal> goals = new ArrayList<>();
     public static List<Stage> stages = new ArrayList<>();
@@ -157,6 +163,12 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 mDao.insert(s1);
                 mDao.insert(s2);
                 mDao.insert(s3);
+                mDao.insert(s4);
+                mDao.insert(s5);
+                mDao.insert(s5);
+                mDao.insert(s6);
+                mDao.insert(s7);
+
                 // road 0 stage 0
                 mGDao.insert(g1);
                 mGDao.insert(g2);

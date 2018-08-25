@@ -23,13 +23,20 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
     private StagesAdapter myAdapter;
     RecyclerView myRecyclerView;
     private StageViewModel mStageViewModel;
+    private int roadId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+
+        if (intent.hasExtra("Road")) {
+            roadId = intent.getIntExtra("Road", 0);
+        }
+
         mStageViewModel = ViewModelProviders.of(this).get(StageViewModel.class);
 
-        mStageViewModel.getmAllStages().observe(this, new Observer<List<Stage>>() {
+        mStageViewModel.getRoadStages(roadId).observe(this, new Observer<List<Stage>>() {
             @Override
             public void onChanged(@Nullable List<Stage> stages) {
                 myAdapter.setStages(stages);

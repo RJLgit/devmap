@@ -10,12 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.android.devmap.R;
 import com.example.android.devmap.adapters.RoadAdapter;
+import com.example.android.devmap.adapters.StagesAdapter;
 import com.example.android.devmap.database.Road;
 import com.example.android.devmap.database.RoadViewModel;
 import com.example.android.devmap.settings.SettingsActivity;
@@ -23,7 +25,7 @@ import com.example.android.devmap.settings.ThemeUtils;
 
 import java.util.List;
 
-public class RoadActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class RoadActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener, RoadAdapter.ListItemClickListener {
     RecyclerView mRecyclerView;
     private static final String TAG = "RoadMapActivity";
     private RoadViewModel mRoadViewModel;
@@ -56,7 +58,7 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mAdapter = new RoadAdapter();
+        mAdapter = new RoadAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -107,5 +109,12 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
         String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
         ThemeUtils.changeTheme(this, s);
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onListItemCLick(int index) {
+        Intent i = new Intent(this, StagesActivity.class);
+        Intent intent = i.putExtra("Road", index);
+        startActivity(intent);
     }
 }

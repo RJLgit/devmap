@@ -21,6 +21,9 @@ public class StageRepository {
         return mAllStages;
     }
 
+    LiveData<List<Stage>> getRoadStages(int id) { return mStageDao.getMapStages(id);}
+
+
     public void insert (Stage stage) {
         new insertAsyncTaskStage(mStageDao).execute(stage);
     }

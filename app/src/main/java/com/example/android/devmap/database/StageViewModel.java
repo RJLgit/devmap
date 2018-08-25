@@ -20,5 +20,8 @@ public class StageViewModel extends AndroidViewModel {
         return mAllStages;
     }
 
+    public LiveData<List<Stage>> getRoadStages(int i) { return mRepository.getRoadStages(i); }
+
+
     public void insert(Stage stage) { mRepository.insert(stage); }
 }

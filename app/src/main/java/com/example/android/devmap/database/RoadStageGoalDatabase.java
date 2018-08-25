@@ -192,7 +192,6 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
                 mDao.insert(s3);
                 mDao.insert(s4);
                 mDao.insert(s5);
-                mDao.insert(s5);
                 mDao.insert(s6);
                 mDao.insert(s7);
                 mDao.insert(s8);

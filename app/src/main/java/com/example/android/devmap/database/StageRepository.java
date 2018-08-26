@@ -8,18 +8,16 @@ import java.util.List;
 
 public class StageRepository {
     private StageDao mStageDao;
-    private LiveData<List<Stage>> mAllStages;
+
 
     StageRepository(Application application) {
         RoadStageGoalDatabase db = RoadStageGoalDatabase.getDatabase(application);
         mStageDao = db.stageDao();
-        mAllStages = mStageDao.getAllStages();
+
 
     }
 
-    LiveData<List<Stage>> getAllStages() {
-        return mAllStages;
-    }
+
 
     LiveData<List<Stage>> getRoadStages(int id) { return mStageDao.getMapStages(id);}
 

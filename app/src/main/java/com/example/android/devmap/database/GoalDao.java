@@ -15,8 +15,6 @@ public interface GoalDao {
     @Query("DELETE FROM goal_table")
     void deleteAll();
 
-    @Query("SELECT * from goal_table ORDER BY id ASC")
-    LiveData<List<Goal>> getAllGoals();
 
     @Query("SELECT * from goal_table WHERE stage_map_reference = :id ORDER BY id ASC")
     LiveData<List<Goal>> getStageGoals(int id);

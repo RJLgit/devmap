@@ -8,15 +8,13 @@ import java.util.List;
 
 public class GoalRepository {
     private GoalDao mGoalDao;
-    private LiveData<List<Goal>> mAllGoals;
+
 
     GoalRepository(Application application){
         RoadStageGoalDatabase db = RoadStageGoalDatabase.getDatabase(application);
         mGoalDao= db.goalDao();
-        mAllGoals = mGoalDao.getAllGoals();
     }
 
-    LiveData<List<Goal>> getAllGoals() { return mAllGoals;}
 
     LiveData<List<Goal>> getGoals(int i) { return mGoalDao.getStageGoals(i);}
 

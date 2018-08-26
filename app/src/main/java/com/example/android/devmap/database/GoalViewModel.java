@@ -9,16 +9,14 @@ import java.util.List;
 
 public class GoalViewModel extends AndroidViewModel{
     private GoalRepository mRepository;
-    private LiveData<List<Goal>> mAllGoals;
 
 
     public GoalViewModel(@NonNull Application application) {
         super(application);
         mRepository =new GoalRepository(application);
-        mAllGoals = mRepository.getAllGoals();
     }
 
-    public LiveData<List<Goal>> getmAllGoals() { return mAllGoals; }
+
 
     public void update(Goal goal) { mRepository.update(goal); }
 

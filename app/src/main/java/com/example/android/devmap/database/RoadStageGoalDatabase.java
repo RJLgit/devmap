@@ -18,6 +18,8 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract StageDao stageDao();
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
+
+    /*Code to enter data into the database*/
     public static Road r = new Road(0,"Front-End Web Development: Basics", "Learn the basics of front-end web development");
     public static Road r1 = new Road(1,"Back-end Web Development: Basics", "Learn the basics of back-end web development");
     public static Road r2 = new Road(2,"DevOps: Basics", "Learn the basics of DevOps");
@@ -109,17 +111,10 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     }
 
 
-// It doesnt assign the correct stage on second load. Probably because the stage references get messed up. How does the update db method work in sql?
+
     public static void updateGoal(Goal goal, RoadStageGoalDatabase db) {
        db.goalDao().update(goal);
-       // db.goalDao().updateGoal();
        int stageId = goal.getStageReference();
-       //Stage res = null;
-     /*  for (Stage ss: stages) {
-           if (ss.getId() == stageId) {
-               res = ss;
-           }
-       }*/
        int result = 0;
        String prog = "in progress";
        List<Goal> lg = db.goalDao().getListGoals(stageId);
@@ -133,14 +128,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
        } else if (result == lg.size()) {
            prog = "completed";
        }
-
-      // if (res != null) {
-           //res.setProgress(prog);
-      // }
-
-      // if (res != null) {
            db.stageDao().updateStage(prog, stageId);
-      // }
     }
 
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()
@@ -151,8 +139,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
         @Override
         public void onOpen (@NonNull SupportSQLiteDatabase db){
             super.onOpen(db);
-
-                new PopulateDbAsync(INSTANCE).execute();
+            new PopulateDbAsync(INSTANCE).execute();
 
         }
 

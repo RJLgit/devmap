@@ -64,27 +64,6 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
     }
 
 
-
- /*   @Override
-    protected void onResume() {
-        setUpSharedPreferences();
-        super.onResume();
-        setContentView(R.layout.activity_main);
-            }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
-
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

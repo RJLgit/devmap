@@ -53,7 +53,7 @@ public class StagesActivity extends AppCompatActivity implements StagesAdapter.L
         myRecyclerView.setLayoutManager(layoutManager);
         myRecyclerView.setHasFixedSize(true);
 
-        myAdapter = new StagesAdapter(this, this);
+        myAdapter = new StagesAdapter(this);
 
         myRecyclerView.setAdapter(myAdapter);
 

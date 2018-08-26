@@ -20,7 +20,7 @@ public class GoalSummaryActivity extends AppCompatActivity{
         String s = sharedPreferences.getString(getString(R.string.pref_theme_key), getString(R.string.pref_theme_light_value));
         ThemeUtils.changeTheme(this, s);
         setContentView(R.layout.activity_goal_summary);
-        mTextView = (TextView) findViewById(R.id.goals_summary_textview);
+        mTextView = findViewById(R.id.goals_summary_textview);
 
         Intent i = getIntent();
         if (i.hasExtra("Goal")){

@@ -18,7 +18,6 @@ import java.util.List;
 
 public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder>{
     private List<Road> mRoadList;
-    private Context mContext;
     final private ListItemClickListener mListItemClickListener;
     private static final String TAG = "RoadAdapter";
 
@@ -47,7 +46,6 @@ public class RoadAdapter extends RecyclerView.Adapter<RoadAdapter.RoadViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RoadAdapter.RoadViewHolder holder, int position) {
-        //holder.mTextView.setText("test");
         holder.bind(mRoadList.get(position).getName());
     }
 

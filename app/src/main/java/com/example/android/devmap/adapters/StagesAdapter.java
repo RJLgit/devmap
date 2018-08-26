@@ -15,11 +15,9 @@ import java.util.List;
 
 public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesViewHolder> {
     final private ListItemClickListener mListItemClickListener;
-    private Context c;
     private List<Stage> stageDataList;
 
-    public StagesAdapter(Context context, ListItemClickListener listItemClickListener) {
-        c = context;
+    public StagesAdapter(ListItemClickListener listItemClickListener) {
         mListItemClickListener = listItemClickListener;
     }
 
@@ -67,8 +65,8 @@ public class StagesAdapter extends RecyclerView.Adapter<StagesAdapter.StagesView
 
         public StagesViewHolder(final View itemView) {
             super(itemView);
-            stageTextView = (TextView) itemView.findViewById(R.id.stageNumber);
-            stageProgressBox = (TextView) itemView.findViewById(R.id.stageProgressTextView);
+            stageTextView = itemView.findViewById(R.id.stageNumber);
+            stageProgressBox = itemView.findViewById(R.id.stageProgressTextView);
             itemView.setOnClickListener(this);
         }
 

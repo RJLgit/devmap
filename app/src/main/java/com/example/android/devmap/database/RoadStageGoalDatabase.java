@@ -9,9 +9,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
+//This line defines the entities in the database and the version number.
 @Database(entities = {Goal.class, Stage.class, Road.class}, version = 1)
 public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract GoalDao goalDao();
@@ -19,7 +20,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract RoadDao roadDao();
     private static RoadStageGoalDatabase INSTANCE = null;
 
-    /*Code to enter data into the database*/
+    /*Code to create the database entities that are to be used to populate the database when it is first created*/
     public static Road r = new Road(0,"Front-End Web Development: Basics", "Learn the basics of front-end web development");
     public static Road r1 = new Road(1,"Back-end Web Development: Basics", "Learn the basics of back-end web development");
     public static Road r2 = new Road(2,"DevOps: Basics", "Learn the basics of DevOps");
@@ -93,7 +94,9 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public static Goal g37 = new Goal("Goal 32","Make some responsive website and add some interactivity with JavaScript", false, 11);
     public static Goal g38 = new Goal("Goal 32","Make some responsive website and add some interactivity with JavaScript", false, 11);
 
-
+    /*Method that implements the singleton pattern to ensure that an existing RoadStageGoalDatabase object is returned if one exists. If one does not exist then a
+    new object is created and returned. The addCallback and addMigrations methods are called on the database builder object to allow for migrations to new
+    database structures (although it is currently placeholder code). The addcallback method is how the database is populated with the data above.*/
     public static RoadStageGoalDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (RoadStageGoalDatabase.class) {
@@ -111,7 +114,9 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
     }
 
 
-
+    /*This code is called when the checkbox for whether a goal has been completed is checked/unchecked.
+    It is sent a Goal object that has its progress changed. This is then changed in the database using the GoalDao.
+    The stage that this goal belongs to is then obtained, and its progress is updated based on the collective state of that stage's goal progress'*/
     public static void updateGoal(Goal goal, RoadStageGoalDatabase db) {
        db.goalDao().update(goal);
        int stageId = goal.getStageReference();
@@ -130,7 +135,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
        }
            db.stageDao().updateStage(prog, stageId);
     }
-
+    /*Method to populate the database that does so in an asynctask off the main thread.*/
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback()
 
     {
@@ -243,7 +248,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
 
     }
 
-
+/*Placeholder code for the migration of the database from version 1 to 2*/
     static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
@@ -251,7 +256,7 @@ public abstract class RoadStageGoalDatabase extends RoomDatabase{
             database.execSQL(null);
         }
     };
-
+    /*Placeholder code for the migration of the database from version 2 to 3*/
     static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {

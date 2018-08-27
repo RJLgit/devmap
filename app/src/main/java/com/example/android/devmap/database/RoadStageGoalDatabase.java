@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 //This line defines the entities in the database and the version number.
-@Database(entities = {Goal.class, Stage.class, Road.class}, version = 1)
+@Database(entities = {Goal.class, Stage.class, Road.class}, version = 2)
 public abstract class RoadStageGoalDatabase extends RoomDatabase{
     public abstract GoalDao goalDao();
     public abstract StageDao stageDao();

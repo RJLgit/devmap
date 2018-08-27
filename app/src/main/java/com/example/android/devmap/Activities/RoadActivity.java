@@ -1,10 +1,16 @@
 package com.example.android.devmap.Activities;
 
+import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -12,9 +18,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.android.devmap.R;
 import com.example.android.devmap.adapters.RoadAdapter;
@@ -40,6 +48,13 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
     // notification helper
     private NotificationHelper noti;
 
+    //used to register alarm manager
+    PendingIntent pendingIntent;
+    //used to store running alarmmanager instance
+    AlarmManager alarmManager;
+    //Callback function for Alarmmanager event
+    BroadcastReceiver mReciever;
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         if (s.equals(getString(R.string.pref_theme_key))) {
@@ -55,7 +70,14 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
         setUpSharedPreferences();
         // assign notification helper
         noti = new NotificationHelper(this);
-
+        // Register AlarmManager Broadcast Recieve
+        RegisterAlarmBroadcast();
+        //check if alarmmanager is set, if not create alarm
+        if (alarmManager != null) {
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_DAY,
+                    AlarmManager.INTERVAL_DAY, pendingIntent);
+        }
         mRoadViewModel = ViewModelProviders.of(this).get(RoadViewModel.class);
         mRoadViewModel.getmALlMaps().observe(this, new Observer<List<Road>>() {
             @Override
@@ -103,7 +125,6 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onListItemCLick(int index) {
         //test notification
-        sendNotification(NOTI_DAILY1, "Test");
         Intent i = new Intent(this, StagesActivity.class);
         Intent intent = i.putExtra("Road", index);
         startActivity(intent);
@@ -145,5 +166,32 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
         startActivity(i);
     }
 
+    private void RegisterAlarmBroadcast() {
+        Log.i("Alarm:RegisterAlarmBroadcast()", "Going to register Intent.RegisterAlramBroadcast");
+        //This is the call back function(BroadcastReceiver) which will be called when your
+        //alarm time will reached.
+        mReciever = new BroadcastReceiver() {
+            private static final String TAG = "Alarm Receiver";
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.i(TAG, "BroadcastReiever::onReceive() >>>>>>>>>>>>>>>>>>>>>>> ");
+                sendNotification(NOTI_DAILY1, "Test");
+            }
+        };
+        //register alarm broadcast
+        registerReceiver(mReciever, new IntentFilter("android.intent.action.MAIN")) ;
+        pendingIntent = PendingIntent.getBroadcast( this, 0, new Intent("android.intent.action.MAIN"),0 );
+        alarmManager = (AlarmManager)(this.getSystemService( Context.ALARM_SERVICE ));
+    }
 
+    private void UnregisterAlarmBroadcast(){
+        alarmManager.cancel(pendingIntent);
+        getBaseContext().unregisterReceiver(mReciever);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mReciever);
+        super.onDestroy();
+    }
 }

@@ -1,25 +1,26 @@
 package com.example.android.devmap.Activities;
 
+import android.app.Notification;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.android.devmap.R;
 import com.example.android.devmap.adapters.RoadAdapter;
-import com.example.android.devmap.adapters.StagesAdapter;
 import com.example.android.devmap.database.Road;
 import com.example.android.devmap.database.RoadViewModel;
+import com.example.android.devmap.notifications.NotificationHelper;
 import com.example.android.devmap.settings.SettingsActivity;
 import com.example.android.devmap.settings.ThemeUtils;
 
@@ -30,6 +31,14 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
     private static final String TAG = "RoadMapActivity";
     private RoadViewModel mRoadViewModel;
     private RoadAdapter mAdapter;
+    //notification Ids
+    private static final int NOTI_DAILY1 = 1100;
+    private static final int NOTI_DAILY2 = 1101;
+    private static final int NOTI_SECONDARY1 = 1200;
+    private static final int NOTI_SECONDARY2 = 1201;
+
+    // notification helper
+    private NotificationHelper noti;
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -44,7 +53,8 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setUpSharedPreferences();
-
+        // assign notification helper
+        noti = new NotificationHelper(this);
 
         mRoadViewModel = ViewModelProviders.of(this).get(RoadViewModel.class);
         mRoadViewModel.getmALlMaps().observe(this, new Observer<List<Road>>() {
@@ -96,4 +106,42 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
         Intent intent = i.putExtra("Road", index);
         startActivity(intent);
     }
+
+    /**
+     * Send activity notifications.
+     *
+     * @param id The ID of the notification to create
+     * @param title The title of the notification
+     */
+    public void sendNotification(int id, String title) {
+        Notification.Builder nb = null;
+        switch (id) {
+            case NOTI_DAILY1:
+                nb = noti.getDailyNotification(title, getString(R.string.dailyNoti_1_body));
+                break;
+            case NOTI_DAILY2:
+                nb = noti.getDailyNotification(title, getString(R.string.dailyNoti_2_body));
+                break;
+            case NOTI_SECONDARY1:
+                nb = noti.getDailyNotification(title, getString(R.string.secondNoti_1_body));
+                break;
+            case NOTI_SECONDARY2:
+                nb = noti.getDailyNotification(title, getString(R.string.secondNoti_2_body));
+                break;
+        }
+        if (nb != null) {
+            noti.notify(id, nb);
+        }
+    }
+
+    /**
+     * Send Intent to load system Notification Settings for this app.
+     */
+    public void goToNotificationSettings() {
+        Intent i = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+        i.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+        startActivity(i);
+    }
+
+
 }

@@ -102,6 +102,8 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onListItemCLick(int index) {
+        //test notification
+        sendNotification(NOTI_DAILY1, "Test");
         Intent i = new Intent(this, StagesActivity.class);
         Intent intent = i.putExtra("Road", index);
         startActivity(intent);
@@ -123,10 +125,10 @@ public class RoadActivity extends AppCompatActivity implements SharedPreferences
                 nb = noti.getDailyNotification(title, getString(R.string.dailyNoti_2_body));
                 break;
             case NOTI_SECONDARY1:
-                nb = noti.getDailyNotification(title, getString(R.string.secondNoti_1_body));
+                nb = noti.getSecondaryNotification(title, getString(R.string.secondNoti_1_body));
                 break;
             case NOTI_SECONDARY2:
-                nb = noti.getDailyNotification(title, getString(R.string.secondNoti_2_body));
+                nb = noti.getSecondaryNotification(title, getString(R.string.secondNoti_2_body));
                 break;
         }
         if (nb != null) {
